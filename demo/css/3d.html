@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d</title>
+	<style>
+		.wrap{
+			perspective: 800px;
+			width:200px;
+			height:100px;
+		}
+		.container:hover{
+			transform:rotateY(240deg);
+		}
+		.container{
+			position:relative;
+			margin:100px;
+			height:100px;
+			width:100px;
+			transform-style:preserve-3d;
+    	transition:transform 2s;
+		}
+		.item{
+			position:absolute;
+			height:100px;
+			width:100px;
+			line-height:100px;
+			background:#333;
+			text-align:center;
+			font-size:50px;
+		}
+		.item:nth-child(1){
+			background:#666;
+			transform:rotateY(120deg) translateZ(80px);
+		}
+		.item:nth-child(2){
+			background:#999;
+			transform:rotateY(240deg) translateZ(80px);
+		}
+		.item:nth-child(3){
+			transform:rotateY(360deg) translateZ(80px);
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="container">
+		<div class="item">1</div>
+		<div class="item">2</div>
+		<div class="item">3</div>
+	</div>
+</div>
+</body>
+</html>
