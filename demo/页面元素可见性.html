@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>页面元素可见性</title>
+	<!-- <link rel="stylesheet" href="css/public.css"> -->
+	<style>
+		body{
+			position:relative;
+		}
+		#one{
+			position:relative;
+			height:250px;
+			width:250px;
+			border:1px solid red;
+			background:grey;
+			box-sizing: border-box;
+		}
+		#two{
+			position:relative;
+			margin-top:300px;
+			height:250px;
+			width:250px;
+			border:1px solid grey;
+			background:red;
+		}
+		#three{
+			position:relative;
+			margin-top:300px;
+			height:250px;
+			width:250px;
+			border:1px solid blue;
+			background:yellow;
+			overflow:hidden;
+			transition: all 0.5s ease;
+		}
+		#four{
+			height:800px;
+			width:100%;
+		    border: 2px solid #F00;
+		}
+	</style>
+</head>
+<body>
+	<div id="one"></div>
+	<div id="two"></div>
+	<div id="three">
+		<div id="four">
+			<h1>1</h1>
+			<h1>2</h1>
+			<h1>3</h1>
+			<h1>4</h1>
+			<h1>5</h1>
+			<h1>6</h1>
+			<h1>7</h1>
+			<h1>8</h1>
+			<h1>9</h1>
+			<h1>10</h1>
+			<h1>11</h1>
+			<h1>12</h1>
+			<h1>13</h1>
+			<h1>14</h1>
+			<h1>15</h1>
+			<h1>16</h1>
+			<h1>17</h1>
+			<h1>18</h1>
+			<h1>19</h1>
+			<h1>20</h1>
+		</div>
+	</div>
+	<script type="text/javascript">
+		/**
+		 * 根节点元素指window.document.documentElement，为特殊元素
+		 * 无特殊说明单位均指css像素
+		 * client和offset均不计算外边距，以及scrollHeight
+		 * 
+		 * client指本身的属性大小(本身的大小＋内边距-滚动条)
+		 * offset指本身并加上外部的边框属性(本身的大小＋内边距＋边框＋滚动条)
+		 * 
+		 * 普通元素offset和client相差border的大小
+		 * 滚动条的在chrome浏览器不影响（目测..）
+		 * 
+		 * 根节点的client和视窗大小相等(viewport(可视区)大小,通过innerHeight,innerWidth获得）
+		 * 根节点offset和页面真实大小相等
+		 * 根节点的client和offset不相等，fuck
+		 */
+		
+		//视窗窗口的高度和宽度
+		var viewHeight = window.innerHeight||window.document.documentElement.clientHeight;
+		var viewWidth = window.innerWidth||window.document.documentElement.clientWidth;
+		console.log("视窗的高度",viewHeight);
+		console.log("视窗的宽度",viewWidth);
+		//页面的高度和宽度
+		var bodyHeight = window.document.body.offsetHeight||window.document.body.clientHeight||window.document.documentElement.offsetHeight;
+		var bodyHeight = window.document.body.offsetWidth||window.document.body.clientWidth||window.document.documentElement.offsetWidth;
+		//元素距离视窗顶部的真实距离
+		var div_three = document.querySelector("#three");
+		console.log("div#three距离视窗顶部真实的距离",div_three.offsetTop);
+		//元素距离视窗顶部的相对距离
+		console.log("div#three距离视窗顶部相对的距离",div_three.getBoundingClientRect().top);
+		window.onscroll = function(e){
+			//视窗滚动的距离
+			var scrollTop = window.pageYOffset||window.document.body.scrollTop;
+			console.log("视窗滚动的高度",scrollTop);
+			//通过getBoundingClientRect获取元素距离上面的高度小于等于视窗的高度则出现在屏幕可视区
+			if(div_three.getBoundingClientRect().top <= viewHeight){
+				console.log("div#three已经出现了，来不及了，赶紧执行方法！！！！")
+			}
+		}
+		//元素内部的滚动高度
+		div_three.onscroll=function(e){
+			var div_three_scrollHeight = this.scrollTop;
+			console.log("元素内部的滚动高度",div_three_scrollHeight);
+		}
+	</script>
+</body>
+</html>
