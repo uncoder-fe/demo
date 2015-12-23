@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>我是index.html</h1>
+	<div id="div1">1.html</div>
+	<div id="div2">2.html</div>
+	<a href="test.html"></a>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="status" style="color:red"></div>
+	<script>
+	window.onload=function(){
+		//初始化
+		var sel = document.querySelector(".status");
+		history.pushState({page: 'index.html'}, "初始化", "index.html"); 
+		sel.innerHTML = "初始化，{page:index.html}";
+		
+		//监听切换
+		window.addEventListener("popstate",function(event){
+			//只在用户点击浏览器回退/前进按钮或者在Javascript代码中调用history.back()才会触发
+			console.log("来自:",event.state);
+		},false);
+
+		var div1 = document.querySelector("#div1");
+		var div2 = document.querySelector("#div2");
+		
+		div1.addEventListener("click",function(e){
+			sel.innerHTML="来自:"+JSON.stringify(history.state);
+			history.pushState({page: '1.html'}, "点的是1.html", "1.html"); 
+		});
+		div2.addEventListener("click",function(e){
+			sel.innerHTML="来自:"+JSON.stringify(history.state);
+			history.pushState({page: '2.html'}, "点的是2.html", "2.html"); 
+		});
+	}
+	</script>
+</body>
+</html>
