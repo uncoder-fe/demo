@@ -31,9 +31,9 @@
 			document.querySelector(".info").innerHTML=absolute+"｜｜"+alpha+"｜｜"+beta+"｜｜"+gamma+"｜｜";
 			//console.log(absolute);
 		});
-		window.addEventListener('orientationchange',function(orientation){
-			document.querySelector(".text").innerHTML = orientation;
-			console.log(orientation)
+		window.addEventListener('orientationchange',function(){
+			document.querySelector(".text").innerHTML = window.orientation;
+			console.dir(window.orientation)
 		});
 	</script>
 </body>
