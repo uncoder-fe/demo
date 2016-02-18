@@ -14,6 +14,8 @@
 </head>
 <body>
 	<div class="info"></div>
+	<br>
+	<div class="text"></div>
 	<script>
 		/**
 		 * DeviceOrientationEvent.alpha 表示设备沿z轴上的旋转角度，范围为0~360。
@@ -28,6 +30,10 @@
 			var gamma = orientData.gamma;
 			document.querySelector(".info").innerHTML=absolute+"｜｜"+alpha+"｜｜"+beta+"｜｜"+gamma+"｜｜";
 			//console.log(absolute);
+		});
+		window.addEventListener('orientationchange',function(orientation){
+			document.querySelector(".text").innerHTML = orientation;
+			console.log(orientation)
 		});
 	</script>
 </body>
