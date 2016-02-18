@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS反转</title>
+	<style>
+		.container{
+			position:relative;
+		    height: 100px;
+    		width: 100px;
+    		transition: transform .5s ease;
+    		transform: rotateY(0deg);
+		}
+		.container div{
+			position:absolute;
+			top:0;
+			left:0;
+			font-size:35px;
+			font-weight:bolder;
+			height:100px;
+			width:100px;
+			color:white;
+			transition: transform .5s ease;
+			backface-visibility:hidden; 
+		}
+		.front{
+			background:red;
+			z-index:9;
+		}
+		.back{
+			background:black;
+			z-index:1;
+		}
+		.flip{
+			transform: rotateY(180deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="front">front</div>
+		<div class="back flip">back</div>
+	</div>
+	<script>
+		document.querySelector(".front").addEventListener("click",function(){
+			if(this.className == "front"){
+				this.className = "front flip";
+				document.querySelector(".back").className="back";
+			}else{
+				this.className = "front";
+				document.querySelector(".back").className="back flip";
+			}
+		});
+		document.querySelector(".back").addEventListener("click",function(){
+			if(this.className == "back"){
+				this.className = "back flip";
+				document.querySelector(".front").className="front";
+			}else{
+				this.className = "back";
+				document.querySelector(".front").className="front flip";
+			}
+		});
+	</script>
+</body>
+</html>
