@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>横竖屏检测</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
 	<meta http-equiv="Content-Type" content="text/html;">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,8 +15,19 @@
 <body>
 	<div class="info"></div>
 	<script>
+		/**
+		 * DeviceOrientationEvent.alpha 表示设备沿z轴上的旋转角度，范围为0~360。
+		 * DeviceOrientationEvent.beta 表示设备在x轴上的旋转角度，范围为-180~180。它描述的是设备由前向后旋转的情况。
+		 * DeviceOrientationEvent.gamma 表示设备在y轴上的旋转角度，范围为-90~90。它描述的是设备由左向右旋转的情况。
+		 */
+
 		window.addEventListener('deviceorientation', function(event) {
-			console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+			var absolute = orientData.absolute;
+			var alpha = orientData.alpha;
+			var beta = orientData.beta;
+			var gamma = orientData.gamma;
+			document.querySelector(".info").innerHTML=absolute+"｜｜"+appha+"｜｜"+beta+"｜｜"+gamma+"｜｜";
+			//console.log(absolute);
 		});
 	</script>
 </body>
