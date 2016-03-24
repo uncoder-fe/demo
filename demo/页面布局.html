@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>页面布局</title>
+	<style>
+		body{
+			position:relative;
+		}
+		.container{
+			margin:5px auto;
+			width:100%;
+		}
+		.container div{
+			height:50px;
+			line-height:50px;
+			color:white;
+			text-align:center;
+		}
+		/*第一种*/
+		.one_left{
+			float:left;
+			width:150px;
+			background:red;
+		}
+		.one_right{
+			margin-left:150px;
+			width:auto;
+			background:black;
+			clear:right;
+		}
+		/*第二种*/
+		.two{
+			display:flex;
+		}
+		.two_left{
+			width:150px;
+			background:red;
+		}
+		.two_right{
+			flex:1;
+			background:black;
+		}
+		/*第三种*/
+		.three{
+
+		}
+		.three_left{
+			float:left;
+			width:150px;
+			background:red;
+		}
+		.three_right{
+			background:black;
+			overflow:hidden;
+		}
+		/*第四种*/
+		.four{
+			position:relative;
+		}
+		.four_left{
+			position:absolute;
+			top:0;
+			left: 0;
+			width:150px;
+			background:red;
+		}
+		.four_right{
+		    margin-left: 150px;	
+			background:black;
+		}
+		/*第五种*/
+		.five{}
+		.five_left{
+			float:left;
+			width:150px;
+			background:red;
+		}
+		.five_right{
+			padding-left:150px;
+			background:black;
+		}
+		/*第六种*/
+		.six{
+			border:0;
+			border-collapse: collapse;
+			border-spacing:0;
+		}
+		.six td{
+			height:50px;
+			line-height:50px;
+			color:white;
+			text-align:center;
+			border:0;
+		}
+		.six_left{
+			width:150px;
+			background:red;
+		}
+		.six_right{
+			background:black;
+		}
+		/**/
+		.seven{
+			position:relative;
+		}
+		.seven_left{
+			padding-right:150px;
+			background:red;
+		}
+		.seven_right{
+			position:absolute;
+			top:0;
+			right: 0;
+			width:150px;
+			background:black;
+		}
+
+		.eight{
+			display:flex;
+			position:relative;
+		}
+		.eight_left{
+			flex:1;
+			background:red;
+		}
+		.eight_right{
+			width:150px;
+			background:black;
+		}
+
+		.nine{
+			position:relative;
+		}
+		.nine_left{
+			float:right;
+			width:150px;
+			background:red;
+		}
+		.nine_right{
+			margin-right: 150px;
+			background:black;
+		}
+
+		.ten{
+			border:0;
+			border-collapse: collapse;
+			border-spacing:0;
+		}
+		.ten td{
+			height:50px;
+			line-height:50px;
+			color:white;
+			text-align:center;
+			border:0;
+		}
+		.ten_left{
+			background:red;
+		}
+		.ten_right{
+			width:150px;
+			background:black;
+		}
+	</style>
+</head>
+<body>
+	<h1>左侧固定，右侧自适应</h1>
+	<div class="container one">
+		<div class="one_left">左侧float</div>
+		<div class="one_right">右侧clear</div>
+	</div>
+	<div class="container two">
+		<div class="two_left">左侧</div>
+		<div class="two_right">右侧flex</div>
+	</div>
+	<div class="container three">
+		<div class="three_left">左侧float</div>
+		<div class="three_right">右侧overflow</div>
+	</div>
+	<div class="container four">
+		<div class="four_left">左侧absolute</div>
+		<div class="four_right">右侧margin或padding</div>
+	</div>
+	<table class="container six">
+		<tr>
+			<td class="six_left">左侧td</td>
+			<td class="six_right">右侧td</td>
+		</tr>
+	</table>
+
+
+	<h1>右侧固定，左侧自适应</h1>
+	<div class="container seven">
+		<div class="seven_left">左侧padding</div>
+		<div class="seven_right">右侧absolute</div>
+	</div>
+	<div class="container eight">
+		<div class="eight_left">左侧flex</div>
+		<div class="eight_right">右侧</div>
+	</div>
+	<div class="container nine">
+		<div class="nine_left">左侧</div>
+		<div class="nine_right">右侧</div>
+	</div>
+	<table class="container ten">
+		<tr>
+			<td class="ten_left">左侧td</td>
+			<td class="ten_right">右侧td</td>
+		</tr>
+	</table>
+
+	<h1>右侧右侧固定，中间自适应</h1>
+	<div class="container ">
+		<div class="_left">左侧padding</div>
+		<div class="_center"></div>
+		<div class="_right">右侧absolute</div>
+	</div>
+</body>
+</html>

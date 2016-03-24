@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			height:100px;
+			width:100px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<script>
+		function throttle(fun,time,option){
+			var timer = null;
+			return function(){
+				var ctx = this;
+				clearTimeout(timer);
+				timer = setTimeout(function(){
+					fun.call(ctx);
+				},time);
+			}
+		}
+		function cLog(){
+			console.log("click")
+		}
+		document.querySelector('div').addEventListener("click",throttle(cLog,2000));
+	</script>
+</body>
+</html>

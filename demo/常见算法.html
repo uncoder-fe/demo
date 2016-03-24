@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<code>
+	//递归冒泡，交换两个临近数据项
+	var arr = [2,5,1,6,3,18,7];
+	mao(arr)
+	function mao(arr){
+		for (var i = 0; i < arr.length; i++) {
+			var index = arr[i];
+			if(index >= arr[i+1]){
+				arr[i] = arr[i+1];
+				arr[i+1] = index;
+				mao(arr);
+				return;
+			}
+		}
+		console.log(arr);
+	}
+
+	//冒泡排序，交换临近两个数据项
+	var arr = [2,5,1,6,3,18,7];
+	mao1(arr)
+	function mao1(){
+		var temp = 0;
+		for (var i = 0; i < arr.length; i++) {
+			for (var j = i; j < arr.length; j++) {
+				if(arr[i] >= arr[j]){
+					var temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		console.log(arr);
+	}
+
+	//插入排序，从第二个元素挨个和前面所有元素比较,大的后移
+	var arr = [2,5,1,6,3,18,7];
+	cha(arr)
+	function cha(){
+		var temp = 0;
+		for (var i = 0; i < arr.length; i++) {
+			for(var j = 0; j < i+1; j++){
+				if(arr[i] <= arr[j]){
+					temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		console.log(arr)
+	}
+
+	//选择排序,找出最小的放第一个
+	var arr = [2,5,1,6,3,18,7];
+	xuan(arr)
+	function xuan(arr){
+		var minIndex = 0;
+		for (var i = 0; i < arr.length; i++) {
+			minIndex = i;
+			for (var j = i+1; j < arr.length; j++) {
+				if(arr[j] <= arr[minIndex]){
+					minIndex = j;
+				}
+			}
+			if (minIndex != i) {
+		    	var temp = arr[minIndex];
+		        arr[minIndex] = arr[i];
+		        arr[i] = temp;
+		    }
+		}
+		console.log(arr);
+	}
+
+	</code>
+</body>
+</html>

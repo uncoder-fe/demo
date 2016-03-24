@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			height:100px;
+			width:100px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<script>
+		function debounce(fun,laterTime){
+			var timer = null;
+			var finishSingle = false;
+
+
+			var nowTime = new Date().getTime();
+			var delayTime = nowTime + laterTime
+			return function(){
+				var ctx = this;
+				clearTimeout(timer);
+				timer = setTimeout(function(){
+					fun.call(ctx);
+				},time);
+			}
+		}
+		function cLog(){
+			console.log("click")
+		}
+		document.querySelector('div').addEventListener("click",debounce(cLog,2000));
+	</script>
+</body>
+</html>
