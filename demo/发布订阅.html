@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function FB(){
+            this.listeners = [];
+        }
+        FB.prototype.addListener = function(key,fn){
+            //检查是否已经订阅
+            for(var i=0;i<this.listeners.length;i++){
+                if(key == this.listeners[i].name){
+                    return;
+                }
+            }            
+            //增加一个订阅者
+            var obj = {};
+                obj.name = key;
+                obj.fn = fn;
+            this.listeners.push(obj);
+        }
+        FB.prototype.removeListener = function(key){
+            var arry = this.listeners;
+            //遍历key
+            var index = null;
+            for(var i=0;i<arry.length;i++){
+                if(key == arry[i].name){
+                    index = i;
+                    break;
+                }
+            }
+            if(index){
+                this.listeners.splice(index,1);
+            }
+        }
+        FB.prototype.fire = function(key,cb){
+            var arry = this.listeners;
+            //获取除key以外所有参数
+            var args = Array.prototype.slice.call(arguments,1);
+            //获取key
+            var key = Array.prototype.shift.call(arguments);
+            for(var i = 0;i < arry.length;i++){
+                if(key == arry[i]['name']){
+                    arry[i]['fn'].apply(this,args);
+                    break;
+                }
+            }
+        }
+        
+        var fb = new FB();
+        fb.addListener('f1',function(name,size){
+           console.log("我是第1个函数",name,size); 
+        });
+        fb.addListener('f2',function(name,size){
+           console.log("我是第2个函数",name,size);
+        });
+        fb.removeListener('f2');
+        fb.fire('f1','tom','small');
+        fb.fire('f2','jack','big');
+    </script>
+</body>
+</html>
