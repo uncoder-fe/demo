@@ -10,16 +10,18 @@
             this.listeners = [];
         }
         FB.prototype.addListener = function(key,fn){
-            //检查是否已经订阅
+            //检查是否已经订阅,没有新增，有则压入
             for(var i=0;i<this.listeners.length;i++){
                 if(key == this.listeners[i].name){
+                    this.listeners[i]['fn'].push(fn);
                     return;
                 }
             }            
             //增加一个订阅者
             var obj = {};
                 obj.name = key;
-                obj.fn = fn;
+                obj.fn = [];
+                obj.fn.push(fn);
             this.listeners.push(obj);
         }
         FB.prototype.removeListener = function(key){
@@ -37,6 +39,7 @@
             }
         }
         FB.prototype.fire = function(key,cb){
+            var _self = this;
             var arry = this.listeners;
             //获取除key以外所有参数
             var args = Array.prototype.slice.call(arguments,1);
@@ -44,18 +47,24 @@
             var key = Array.prototype.shift.call(arguments);
             for(var i = 0;i < arry.length;i++){
                 if(key == arry[i]['name']){
-                    arry[i]['fn'].apply(this,args);
-                    break;
+                    //循环迭代
+                    arry[i]['fn'].forEach(function(index,item,arry){
+                        index.apply(_self,args);
+                    });
+                    return;
                 }
             }
         }
         
         var fb = new FB();
         fb.addListener('f1',function(name,size){
-           console.log("我是第1个函数",name,size); 
+           console.log("我是f1的第1个函数",name,size); 
+        });
+        fb.addListener('f1',function(name,size){
+           console.log("我是f1的第2个函数",name,size); 
         });
         fb.addListener('f2',function(name,size){
-           console.log("我是第2个函数",name,size);
+           console.log("我是f2第1个函数",name,size);
         });
         fb.removeListener('f2');
         fb.fire('f1','tom','small');
