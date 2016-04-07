@@ -10,7 +10,7 @@
             this.listeners = [];
         }
         FB.prototype.addListener = function(key,fn){
-            //检查是否已经订阅,没有新增，有则压入
+            //检查是否已经订阅,没有则新增，有则压入
             for(var i=0;i<this.listeners.length;i++){
                 if(key == this.listeners[i].name){
                     this.listeners[i]['fn'].push(fn);

@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+	#main{
+		margin:50px auto;
+		padding:250px; 
+		position: relative;
+		height: 900px;
+		width: 900px;
+		border: 1px solid red;
+	}
+	#hair{
+		position: relative;
+		width: 100px;
+		height: 10px;
+		border-top-left-radius: 100px;
+		border-top-right-radius: 100px;
+		border-top: 1px solid gray;
+	}
+	#hair ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		height: inherit;
+		width: inherit;
+	}
+	#hair li{
+		float: left;
+		margin-left: 2px;
+		height: 8px;
+		width: 2px;
+		border: 1px solid red;
+	}
+	#head{
+		position: relative;
+		width: 100px;
+		height: 100px;
+		border-top-left-radius: 100px;
+		border-top-right-radius: 100px;
+		border: 1px solid gray;
+	}
+	#left_eye{
+		position: relative;
+		top: -10px;
+		left: 20px;
+		height: 10px;
+		width: 15px;
+		border-radius: 5px 10px;
+		border: 1px solid gray;
+		background: white;
+		-webkit-animation: myeye 5s infinite;
+   	}  
+	#right_eye{
+		position: relative;
+		top: -22px;
+		left: 60px;
+		height: 10px;
+		width: 15px;
+		border-radius: 10px 5px;
+		border: 1px solid gray;
+		-webkit-animation: myeye 5s infinite;
+	}
+	@-webkit-keyframes myeye {
+	    0% {background: red;}
+	    25% {background: yellow;}
+	    50% {background: blue}
+	    75% {background: black}
+	    100% {background: : yellow;}
+	}
+	#left_ear{
+		position: relative;
+		top: 40px;
+		left: -10px;
+		height: 25px;
+		width: 10px;
+		border: 1px solid gray;
+	}
+	#left_ear:before{
+		position: absolute;
+		top: 9px;
+		left: -20px;
+		content: '';
+		height: 7px;
+		width: 5px;
+		border-radius: 7px;
+		border: 1px solid gray;
+	}
+	#left_ear:after{
+		position: absolute;
+		top: 5px;
+		left: -12px;
+		content: '';
+		height: 14px;
+		width: 8px;
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		border: 1px solid gray;
+	}
+	#right_ear{
+		position: relative;
+		top: 13px;
+		left: 98px;
+		height: 25px;
+		width: 10px;
+		border: 1px solid gray;
+	}
+	#right_ear:before{
+		position: absolute;
+		top: 9px;
+		left: 24px;
+		content: '';
+		height: 7px;
+		width: 5px;
+		border-radius: 7px;
+		border: 1px solid gray;
+	}
+	#right_ear:after{
+		position: absolute;
+		top: 5px;
+		left: 12px;
+		content: '';
+		height: 14px;
+		width: 8px;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		border: 1px solid gray;
+	}
+	#nose{
+		position: relative;
+		top: -5px;
+		left: 47px;
+		height: 5px;
+		width: 5px;
+		border-radius:5px;
+		border: 1px solid gray; 
+	}
+	#nose:after{
+		position: relative;
+		content: "#"
+		top: 5px;
+		left: 5px;
+		height: 5px;
+		width: 10px;
+		border: 1px solid gray;
+	}
+	#mouth{
+		position: relative;
+		top: 5px;
+		left: 40px;
+		height: 8px;
+		width: 25px;
+		border-radius:5px;
+		border-top: 1px solid gray; 
+		border-bottom: 1px solid gray; 
+	}
+	#mouth ul{
+		position: relative;
+		margin: 0;
+		padding: 0;
+		height: inherit;
+		width: inherit;
+		list-style: none;
+	}
+	#mouth li{
+		float: left;
+		margin-left: 2px;
+		height: 6px;
+		width: 2px;
+		border: 1px solid gray;
+	}
+	#body{
+		position: relative;
+		text-align: center;
+		line-height: 150px;
+		top: 5px;
+		left: -25px;
+		height: 150px;
+		width: 150px;
+		border: 1px solid gray;
+	}
+	#body span{
+		font-size: 70px;
+	}
+	#left_hand{
+		position: relative;
+		top: -203px;
+		left: -40px;
+		height: 120px;
+		width:15px;
+		border: 1px solid gray;
+		border-radius: 10px;
+		-webkit-transform-origin:0% 100%;
+		transform: rotate(-45deg);
+		-webkit-animation: mylefthand 3s infinite;
+	}
+	#left_hand:before{
+		position: absolute;
+		top: -12px;
+		left: -5px;
+		content: '';
+		height: 10px;
+		width: 5px;
+		border: 1px solid gray;
+		border-radius: 5px;
+		transform: rotate(-35deg);
+	}
+	#left_hand:after{
+		position: absolute;
+		top: -13px;
+		left: 11px;
+		content: '';
+		height: 10px;
+		width: 5px;
+		border: 1px solid gray;
+		border-radius: 5px;
+		transform: rotate(30deg);
+	}
+	#right_hand{
+		position: relative;
+		top: -338px;
+		left: 140px;
+		height: 120px;
+		width:15px;
+		border: 1px solid gray;
+		border-radius: 10px;
+		-webkit-transform-origin:0% 100%;
+		transform: rotate(45deg);
+		-webkit-animation: myrighthand 3s infinite;
+	}
+	#right_hand:before{
+		position: absolute;
+		top: -12px;
+		left: -5px;
+		content: '';
+		height: 10px;
+		width: 5px;
+		border: 1px solid gray;
+		border-radius: 5px;
+		transform: rotate(-35deg);
+	}
+	#right_hand:after{
+		position: absolute;
+		top: -13px;
+		left: 11px;
+		content: '';
+		height: 10px;
+		width: 5px;
+		border: 1px solid gray;
+		border-radius: 5px;
+		transform: rotate(30deg);
+	}
+	@-webkit-keyframes mylefthand {
+	    0% {transform: rotate(-45deg);}
+	    50% {transform: rotate(-135deg);}
+	    100% {transform: rotate(-45deg);}
+	}
+	@-webkit-keyframes myrighthand {
+	    0% {transform: rotate(45deg);}
+	    50% {transform: rotate(135deg);}
+	    100% {transform: rotate(45deg);}
+	}
+	#left_foot{
+		position: relative;
+		top: -225px;
+		height: 100px;
+		width: 20px;
+		border-top-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		border: 1px solid gray;
+		-webkit-transform-origin:100% 0% 0%;
+		-webkit-animation: myleftfoot 3s infinite;
+	}
+	#left_foot:before{
+		position: absolute;
+		top: 100px;
+		content: '';
+		height: 20px;
+		width: 20px;
+		border-radius: 20px;
+		transform: skew(165deg);
+		border: 1px solid gray;
+	}
+	#right_foot{
+		position: relative;
+		top: -325px;
+		left: 80px;
+		height: 100px;
+		width: 20px;
+		border-top-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		border: 1px solid gray;
+		-webkit-transform-origin:100% 0% 0%;
+		-webkit-animation: myrightfoot 3s infinite;
+	}
+	#right_foot:before{
+		position: absolute;
+		top: 100px;
+		content: '';
+		height: 20px;
+		width: 20px;
+		border-radius: 20px;
+		transform: skew(-165deg);
+		border: 1px solid gray;
+	}
+	@-webkit-keyframes myleftfoot {
+	    0% {transform: rotate(0deg);}
+	    50% {transform: rotate(45deg);}
+	    100% {transform: rotate(0deg);}
+	}
+	@-webkit-keyframes myrightfoot {
+	    0% {transform: rotate(0deg);}
+	    50% {transform: rotate(-45deg);}
+	    100% {transform: rotate(0deg);}
+	}
+	#jj{
+		position: relative;
+		top: -440px;
+		left: 45px;
+		height: 10px;
+		width: 10px;
+		border-radius: 10px;
+		border: 1px solid gray;
+	}
+	#jj:after{
+		position: absolute;
+		top: 6px;
+		left: 3px;
+		content: '';
+		height: 8px;
+		width: 2px;
+		border: 1px solid gray;
+		border-bottom-right-radius: 2px;
+		border-bottom-left-radius: 2px;
+		-webkit-transform-origin:100% 0%;
+		-webkit-animation: myjj 3s infinite;
+	}
+	@-webkit-keyframes myjj {
+	    0% {
+	    	transform: scaleY(1);
+	    	height: 8px;
+	    }
+	    50% {
+	    	transform: scaleY(1.5);
+	    	height: 15px;
+	    }
+	    100% {
+	    	transform: scaleY(1);
+	    	height: 8px;
+	    }
+	}
+	</style>
+</head>
+<body>
+<h1>请使用chrome打开</h1>
+<div id="main">
+	<div id="hair">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div id="head">
+		<div id="left_ear"></div>
+		<div id="right_ear"></div>
+		<div id="left_eye"></div>
+		<div id="right_eye"></div>
+		<div id="nose"></div>
+		<div id="mouth">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+	<div id="neck"></div>
+	<div id="body">
+		<span>π</span>
+	</div>
+	<div id="left_hand"></div>
+	<div id="right_hand"></div>
+	<div id="left_foot"></div>
+	<div id="right_foot"></div>
+	<div id="jj"></div>
+</div>
+<script type="text/javascript">
+window.addEventListener("DOMContentLoaded",function(){
+	var hairs=document.querySelectorAll("#hair>ul li");
+	for (var i = 0; i < hairs.length; i++) {
+		hairs[i].style.display="none";
+	};
+},false)
+	
+</script>
+</body>
+</html>

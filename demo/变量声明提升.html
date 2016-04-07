@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>变量声明提升</title>
+</head>
+<body>
+	<p>函数预解析</p>
+	<p>函数第一，变量第二</p>
+	<p>变量undefined</p>
+	<script type="text/javascript">
+
+	/*
+	var b=1;
+	function aa(){
+		alert(b);   	//1
+	}
+	aa();
+	*/
+
+	/*
+	b=1;
+	function aa(){
+		alert(b);   	//1
+	}
+	aa();
+	*/
+
+	/*
+	var b=1;
+	function aa(){
+		alert(b);  		//undefined
+		var b=2;
+	}
+	aa();
+	*/
+
+	/*
+	var b=1;
+	function aa(){
+		alert(b);  		//1
+		b=2;
+	}
+	aa();
+	*/
+
+	/*
+	b=1;
+	function aa(){
+		alert(b);  		//undefined
+		var b=2;
+	}
+	aa();
+	*/
+
+	
+	b=1;
+	function aa(){
+		alert(b);   	//1
+		b=2;
+	}
+	aa();
+	
+
+	/*
+	function aa(){
+		alert(a);   	//undefined
+		var a=2;
+	}
+	aa();
+	*/
+
+	/*
+	function aa(){
+		alert(a);   	//语法出错
+		a=2;
+	}
+	aa();
+	*/
+
+	/*
+		结论：
+		1，函数内部的用var声明的局部变量会影响外部的值。
+		2，答对这个，只需要看看内部有没有var 声明同名变量就好了，考虑顺序问题，不需要考虑外部同名变量
+	*/
+	</script>
+</body>
+</html>
