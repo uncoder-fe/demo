@@ -12,17 +12,21 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<meta http-equiv="Pragma" content="no-cache">
 	<style>
+		html,body{
+			height:100%;
+		}
 		body{
 			position:relative;
 			height:130%;
 			color:white;
 			background:black;
 		}
+		.main{
+			height:90%;
+			overflow:scroll;
+		}
 		footer{
-			position:fixed;
-			left:0;
-			bottom:0;
-			height:50px;
+			height:10%;
 			width:100%;
 			line-height:50px;
 			background:yellow;
@@ -37,6 +41,7 @@
 	</style>
 </head>
 <body>
+	<div class="main">
 	<div>hello</div>
 	<div>hello</div>
 	<div>hello</div>
@@ -218,6 +223,7 @@
 	<div>hello</div>
 	<div>hello</div>
 	<div>hello</div>
+	<div>
 	<footer>
 		<input type="text">
 	</footer>
