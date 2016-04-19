@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 1
+		console.log(this);
+		// 2
+		function say() {
+			console.log(this);
+		}
+		say();
+		// 3
+		(function(){
+			console.log(this);
+		})();
+		// 4
+		var a = (function(){
+			var a = 123;
+			console.log(this);
+			function say(){
+				console.log(a);
+				console.log(this);
+			}
+			return {say:say};
+		})()
+		console.log(a.say());
+		// 5
+		function b(){
+			console.log(this);
+		}
+		function c(){
+			console.log(this);
+			b.call(this,'我是c');
+		}
+		c();
+		//取决于执行环境的作用域
+		//this是一个对象，typeof this  => 'obj'
+		//上下文环境
+	</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function Animal(name){
+			this.name = name;
+		}
+		Animal.prototype.sayName = function(){
+			console.log(this.name);
+		}
+		var animal = new Animal('cat');
+		console.log(animal);
+
+		
+		function Cat(age){
+			this.age = age;
+		}
+		// 1,使用父类对象
+		Cat.prototype = new Animal('tom');
+		// 2,继承原型
+		Cat.prototype = Animal.prototype;
+
+		Cat.prototype.sayAge = function(){
+			console.log(this.age);
+		}
+		var tom = new Cat(12);
+	</script>
+</body>
+</html>

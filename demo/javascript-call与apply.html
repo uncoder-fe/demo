@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	
+		function say(name){
+			console.log(name);
+			console.log(arguments);
+			//console.log(this);
+		}
+		say.call(null,"tom","123","jack","456");
+		say.apply(null,["tom","123"],["jack","456"]);
+		//区别
+		//call传单个,apply传数组
+		//传多个形参使用call
+		//指定为null和undefined的this值会自动指向全局对象
+		//通过 call 方法，你可以在一个对象上借用另一个对象上的方法，
+		//比如Object.prototype.toString.call([])，就是一个Array对象借用了Object对象上的方法
+		var a = [1,2];
+		for (var i = 0; i < a.length; i++) {
+			(function(){
+				console.log(this);
+				//console.log(arguments);
+			}).call(a[i],i);
+		}
+		// call调用匿名函数
+
+		function get(){
+			console.log(this);
+			//console.log(this.age);
+		}
+		//var i = {age:12};
+		var i = new Number();
+			i = 1;
+		get.call(i);
+		//call调用匿名方法，并指定this
+		//群里人不给我解答，这里暂定是因为obj吧
+	</script>
+</body>
+</html>
