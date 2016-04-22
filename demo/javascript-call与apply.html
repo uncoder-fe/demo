@@ -39,6 +39,33 @@
 		get.call(i);
 		//call调用匿名方法，并指定this
 		//群里人不给我解答，这里暂定是因为obj吧
+		//
+		var ccc = function(func,context,args){
+			if(!context){
+				return function(){
+					func.call(null);
+				}
+			}
+			if(context == window){
+				return function(name){
+					func.call(context,name);
+				}
+			}
+			return function(name,age){
+				func.call(context,name,age);
+			} 
+		}
+		ccc(function(){
+			console.log('仅仅返回这个匿名函数');
+		})();
+		ccc(function(){
+			var args = Array.prototype.slice.call(arguments);
+			console.log(args);
+		},window,'我只用名字那个方法')('tom');
+		ccc(function(){
+			var args = Array.prototype.slice.call(arguments);
+			console.log(args);
+		},{},'我用默认那个方法')('jack',12);
 	</script>
 </body>
 </html>

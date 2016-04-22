@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>库源码</title>
+</head>
+<body>
+	<!-- underscore.js -->
+	<script type="text/javascript">
+		// 创建引用别名，快捷调用核心原型方法
+		var push = ArrayProto.push,
+		    slice = ArrayProto.slice,
+	      	toString = ObjProto.toString,
+	     	hasOwnProperty = ObjProto.hasOwnProperty;
+	    // 创建一个Underscore 对象的安全引用为下面使用
+		var _ = function(obj) {
+		    if (obj instanceof _) return obj;
+		    if (!(this instanceof _)) return new _(obj);
+		    this._wrapped = obj;
+		};
+		// 内部函数 返回在其他underscore函数里一个有效的版本，为通过回调，重复调用
+		var optimizeCb = function(func, context, argCount) {
+		    if (context === void 0) return func;
+		    switch (argCount == null ? 3 : argCount) {
+		      case 1: return function(value) {
+		        return func.call(context, value);
+		      };
+		      // The 2-parameter case has been omitted only because no current consumers
+		      // made use of it.
+		      case 3: return function(value, index, collection) {
+		        return func.call(context, value, index, collection);
+		      };
+		      case 4: return function(accumulator, value, index, collection) {
+		        return func.call(context, accumulator, value, index, collection);
+		      };
+		    }
+		    return function() {
+		      return func.apply(context, arguments);
+		    };
+		 };
+		// 从其他对象创建一个新的继承对象的一个内部函数
+		var baseCreate = function(prototype) {
+			if (!_.isObject(prototype)) return {};
+			if (nativeCreate) return nativeCreate(prototype);
+			Ctor.prototype = prototype;
+			var result = new Ctor;
+			Ctor.prototype = null;
+			return result;
+		};
+		var property = function(key) {
+		    return function(obj) {
+		      return obj == null ? void 0 : obj[key];
+		    };
+		};
+	</script>
+
+</body>
+</html>
