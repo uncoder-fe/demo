@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var obj = {};
+		Object.defineProperty(obj,'name',{
+			//value:'tom',
+			set: function(value){
+				console.log(this.value);
+				this.value = value;
+	     	},
+		    get: function(){
+		        return this.value;
+		    },
+		    //writable:true,
+		    enumerable: true,
+		    configurable: true
+		});
+		/*
+			configurable ，属性是否可配置。可配置的含义包括：是否可以删除属性（ delete ），是否可以修改属性的 writable 、 enumerable 、 configurable 属性。
+			enumerable ，属性是否可枚举。可枚举的含义包括：是否可以通过 for...in 遍历到，是否可以通过 Object.keys() 方法获取属性名称。
+			writable ，属性是否可重写。可重写的含义包括：是否可以对属性进行重新赋值。
+			value ，属性的默认值。
+			set ，属性的重写器（暂且这么叫）。一旦属性被重新赋值，此方法被自动调用。
+			get ，属性的读取器（暂且这么叫）。一旦属性被访问读取，此方法被自动调用。
+		*/
+		/*
+			不过还是有一点需要额外注意一下， 
+			Object.defineProperty() 方法设置属性时，
+			属性不能同时声明访问器属性（ set 和 get ）和 writable 或者 value 属性。 
+			意思就是，某个属性设置了 writable 或者 value 属性，
+			那么这个属性就不能声明 get 和 set 了，
+			反之亦然。因为 Object.defineProperty() 在声明一个属性时，
+			不允许同一个属性出现两种以上存取访问控制。
+		 */
+	</script>
+</body>
+</html>

@@ -23,6 +23,8 @@
 		Cat.prototype = new Animal('tom');
 		// 2,继承原型
 		Cat.prototype = Animal.prototype;
+		// 3,调用
+		Cat.prototype = Animal.call(Cat,arguments);
 
 		Cat.prototype.sayAge = function(){
 			console.log(this.age);
