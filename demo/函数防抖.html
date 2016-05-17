@@ -14,20 +14,31 @@
 <body>
 	<div></div>
 	<script>
-		function throttle(fun,time,option){
-			var timer = null;
+		function debounce(func,wait){
+			var timeout, args, context, timestamp;
+			
+			var later = function(){
+				var last = Date.now()-timestamp;
+				if(last < wait && last > 0){
+					timeout = setTimeout(later, wait - last);
+				}else{
+					timeout = null;
+					func.apply(context, args);
+					if (!timeout) context = args = null;
+				}
+			}
 			return function(){
-				var ctx = this;
-				clearTimeout(timer);
-				timer = setTimeout(function(){
-					fun.call(ctx);
-				},time);
+				context = this;
+				args = arguments;
+				timestamp = Date.now();
+				// 如果延时不存在，重新设定延时
+				if(!timeout){ timeout = setTimeout(later,wait)};
 			}
 		}
 		function cLog(){
 			console.log("click")
 		}
-		document.querySelector('div').addEventListener("click",throttle(cLog,2000));
+		document.querySelector('div').addEventListener("click",debounce(cLog,1000));
 	</script>
 </body>
 </html>
