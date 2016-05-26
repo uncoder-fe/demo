@@ -13,7 +13,7 @@ $(function () {
     var WD = $(window).width()/3;
     $(".mix").css({'height': WD,'width': WD});
     //翻牌子
-    $(".front").on("click", function() {
+    $(".front,.back").on("click", function() {
         //初始动画
         var self = $(this);
         var parentNode = self.parent();
@@ -151,7 +151,7 @@ $(function () {
         img.onload = function () {
             if (index == images.length - 1) {
                 $(".loading").hide();
-                //animateMove();
+                animateMove();
                 return;
             }
             count = index + 1;
