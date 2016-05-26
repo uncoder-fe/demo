@@ -7,7 +7,7 @@
 	box-sizing: border-box;
 	-webkit-overflow-scrolling: touch;
 }
-html,body,section,article,nav,ul,li,a,div,input,header,footer{
+html,body,section,article,nav,ul,li,a,div,input,header,footer,figure,figcaption{
 	margin: 0;
 	padding: 0;
 }
