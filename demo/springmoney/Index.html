@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>春节翻牌子</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" href="springmoney.css">
+</head>
+<body>
+    <div class="loading">
+        <div class="sk-cube-grid">
+          <div class="sk-cube sk-cube1"></div>
+          <div class="sk-cube sk-cube2"></div>
+          <div class="sk-cube sk-cube3"></div>
+          <div class="sk-cube sk-cube4"></div>
+          <div class="sk-cube sk-cube5"></div>
+          <div class="sk-cube sk-cube6"></div>
+          <div class="sk-cube sk-cube7"></div>
+          <div class="sk-cube sk-cube8"></div>
+          <div class="sk-cube sk-cube9"></div>
+        </div>
+    </div>
+    <div class="viewport">
+        <div class="top">
+            <img src="springmoney/top.png" alt="">
+        </div>
+        <div class="middle">
+        <div id="container">
+            <div class="mix">
+                <figure class="front">
+                    <img src="springmoney/mk01@2x.png" alt="">
+                </figure>
+                <figure class="back flip">
+                    <img src="springmoney/mk01@2x.png" alt="">
+                </figure>
+            </div>
+            <div class="mix">
+                <figure class="front">
+                    <img src="springmoney/mk02@2x.png" alt="">
+                </figure>
+                <figure class="back flip">
+                    <img src="springmoney/mk02@2x.png" alt="">
+                </figure>
+            </div>
+            <div class="mix">
+                <figure class="front">
+                    <img src="springmoney/mk03@2x.png" alt="">
+                </figure>
+                <figure class="back flip">
+                    <img src="springmoney/mk03@2x.png" alt="">
+                </figure>
+            </div>
+            <div class="mix">
+                <figure class="front">
+                    <img src="springmoney/mk04@2x.png" alt="">
+                </figure>
+                <figure class="back flip">
+                    <img src="springmoney/mk04@2x.png" alt="">
+                </figure>
+            </div>
+            <div class="mix">
+                <figure class="front">
+                    <img src="springmoney/mk05@2x.png" alt="">
+                </figure>
+                <figure class="back flip">
+                    <img src="springmoney/mk05@2x.png" alt="">
+                </figure>
+            </div>
+            <div class="mix">
+                <figure class="front">
+                    <img src="springmoney/mk06@2x.png" alt="">
+                </figure>
+                <figure class="back flip">
+                    <img src="springmoney/mk06@2x.png" alt="">
+                </figure>
+            </div>
+            <div class="mix">
+                <figure class="front">
+                    <img src="springmoney/mk07@2x.png" alt="">
+                </figure>
+                <figure class="back flip">
+                    <img src="springmoney/mk07@2x.png" alt="">
+                </figure>
+            </div>
+            <div class="mix">
+                <figure class="front">
+                    <img src="springmoney/mk08@2x.png" alt="">
+                </figure>
+                <figure class="back flip">
+                    <img src="springmoney/mk08@2x.png" alt="">
+                </figure>
+            </div>
+            <div class="mix">
+                <figure class="front">
+                    <img src="springmoney/mk09@2x.png" alt="">
+                </figure>
+                <figure class="back flip">
+                    <img src="springmoney/mk09@2x.png" alt="">
+                </figure>
+            </div>
+        </div>
+        </div>
+        <div>
+            <img src="springmoney/roles.png" alt="规则">
+        </div>
+    </div>
+    <div class="mask" style="display:none;"></div>
+    <!--1元红包-->
+    <script type="text/html" id="tpl_red">
+        <div class="my_alert1">
+            <div class="my_container">
+                <img src="springmoney/1bg@2x.png" alt="">
+            </div>
+            <div class="my_btn">
+               <a href="javascript:;" class="btn exchange" style="margin-top: 5px;">领红包</a>
+               <a href="javascript:;" class="btn btn_black" style="margin-top: 5px;">放弃</a>
+            </div>
+        </div>
+    </script>
+    <!--饭票-->
+    <script type="text/html" id="tpl_ticket">
+        <div class="my_alert">
+            <div class="success">
+                <img src="springmoney/result_ticket.png" alt="">
+            </div>
+            <div class="my_container">
+                <p>{msg}</p>
+                <p>{dis}</p>
+                <p>有效期至{time}</p>
+                <p>分享给小伙伴还能再玩1次哦！</p>
+            </div>
+            <div class="my_btn">
+               <a href="javascript:;" class="btn btn_db btn_black">放弃</a>
+               <a href="javascript:;" class="btn btn_db exchange">去兑换</a>
+            </div>
+        </div>
+    </script>
+    <!--抱歉-->
+    <script type="text/html" id="tpl_fail">
+        <div class="my_alert">
+            <p class="my_title">抱歉</p>
+            <div class="my_container">
+                {text}
+            </div>
+            <div class="my_btn">
+               {btn}
+            </div>
+        </div>
+    </script>
+    <!--兑换成功-->
+    <script type="text/html" id="tpl_success">
+        <div class="my_alert">
+            <div class="success">
+                <img src="springmoney/{img}.png" alt="">
+            </div>
+            <p class="my_title">兑换成功</p>
+            <div class="my_container">
+                {text}
+            </div>
+            <div class="my_btn">
+                <a href="javascript:;" class="btn btn_default">完成</a>
+            </div>
+        </div>
+    </script>
+    <!--兑换成功但没关注-->
+    <script type="text/html" id="tpl_success_new">
+        <div class="my_alert">
+            <div class="success">
+                <img src="springmoney/{img}.png" alt="">
+            </div>
+            <div class="my_x"></div>
+            <p class="my_title">兑换成功</p>
+            <div class="my_container">
+                <p>{text}</p>
+                <img src="springmoney/erweima.png" alt="">
+            </div>
+        </div>
+    </script>
+    <!--手机号绑定-->
+    <script type="text/html" id="tpl_bindphone">
+        <div class="my_alert" id="bindphone">
+            <p class="my_title">绑定手机</p>
+            <div class="my_container">
+              <div class="checkPhone">
+                  <input type="tel" placeholder="请输入手机号" maxlength="11">
+              </div>
+              <div style="height: 35px;">
+                  <div class="checkNumber"><input type="tel" placeholder="验证码" maxlength="4"></div>
+                  <div class="checkInfo"><div class="timer">发送</div></div>
+              </div>
+              <p class="error_info"></p>
+            </div>
+            <div class="my_btn">
+               <a href="javascript:;" class="btn btn_db btn_black">放弃</a>
+               <a href="javascript:;" class="btn btn_db btn_gray phone_finish">下一步</a> 
+            </div>
+        </div>
+    </script>
+    <script src="jquery-2.1.4.min.js"></script>
+    <script src="springmoney.js"></script>
+</body>
+</html>

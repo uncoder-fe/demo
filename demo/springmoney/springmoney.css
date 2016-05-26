@@ -1,0 +1,451 @@
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+* {
+    tap-highlight-color: transparent;
+    -webkit-tap-hnhighlight-color: transparent;
+    -ms-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+}
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    font-size: 1pc;
+    font-family: "Helvetica Neue", "Hiragino Sans GB W3", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    line-height: 1;
+}
+
+input {
+    padding-left: 10px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #999;
+    border-radius: 5px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.under-line {
+    margin: 5px 0;
+    height: 1px;
+    width: 100%;
+    background: #dedede;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+p,
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+/*视窗*/
+
+body {
+    background: #1b1b1b;
+}
+.viewport {
+    position: relative;
+    width: 100%;
+/*    height: 100%;*/
+    min-width: 320px;
+    max-width: 640px;
+    text-align: center;
+    background-size: 100%;
+    background-repeat: repeat-y;
+    overflow: scroll;
+}
+/**/
+.loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 110%;
+    width: 100%;
+    background: black;
+    text-align: center;
+    z-index: 9;
+}
+.sk-cube-grid {
+    width: 80px;
+    height: 80px;
+    margin: 100px auto;
+    margin-top: 55%;
+    margin-bottom: 15px;
+}
+
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  background-color: #e9bb41;
+  float: left;
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+}
+.sk-cube-grid .sk-cube1 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube2 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube3 {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s; }
+.sk-cube-grid .sk-cube4 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube5 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube6 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube7 {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s; }
+.sk-cube-grid .sk-cube8 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube9 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+
+@-webkit-keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1); 
+  }
+}
+
+@keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1);
+  } 
+}
+.process{
+    height: 5px;
+    width: 0%;
+    background: #e9bb41;
+    border-radius: 10px;
+}
+/**/
+.top{
+    min-height: 182px;
+}
+#container{
+    height: 100%;
+    width: 100%;
+}
+#container .mix {
+    //display: none;
+}
+.mix {
+    position: relative;
+    float: left;
+    border: 1px solid #1b1b1b;
+}
+figure {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    -webkit-transition: all 1s;
+    -webkit-backface-visibility: hidden;
+}
+.giveup{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: red;
+    z-index: 9999;
+}
+figure img {
+    width: 100%;
+    max-width: 100%;
+}
+
+.flip {
+    z-index: -1;
+    transform: rotateY( 180deg);
+    -webkit-transform: rotateY( 180deg);
+}
+.rrr{
+    -webkit-animation: rrr 1s linear infinite;
+    animation: rrr 1s linear infinite;
+}
+@keyframes rrr{
+    from{
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+    50%{
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg)
+    }
+    to{
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg)
+    }
+}
+@-webkit-keyframes rrr{
+   from{
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+    50%{
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg)
+    }
+    to{
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg)
+    }
+}
+/*弹出层*/
+.mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 110%;
+    width: 100%;
+    background: rgba(0,0,0,0.35);
+    text-align: center;
+}
+.my_alert{
+    display: inline-block;
+    position: fixed;
+    top: 20%;
+    left: 7%;
+    width: 86%;
+    min-height: 150px;
+    background: #e9bb41;
+    border: 4px solid black;
+    border-radius: 10px;
+    text-align: center;
+}
+.my_alert1{
+    position: relative;
+    display: inline-block;
+    margin-top: 5%;
+    width: 85%;
+    min-height: 150px;
+    border-radius: 10px;
+    text-align: center;
+}
+.my_x{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 30px;
+    width: 30px;
+    background: url(../img/moneylottery/x.png);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.my_title{
+    height: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 50px;
+}
+.my_container{
+    padding: 0 15px;
+    min-height: 100px;
+    font-size: 17px;
+    line-height: 1.3;
+    text-align: center;
+}
+.my_container img{
+    display: inline-block;
+    width: 50%;
+    height: 50%;
+}
+.my_alert1 .my_container img{
+    width: 90%;
+}
+.my_btn{
+    min-height: 50px;
+}
+.btn{
+    display: inline-block;
+    min-height: 35px;
+    width: 50%;
+    line-height: 35px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background:#e02823;
+    border: 1px solid black;
+    box-shadow: 2px 3px 1px black;
+    border-radius: 5px;
+}
+.btn_db{
+    width: 42%;
+}
+.btn_db:nth-child(2){
+    margin-left: 5%;
+}
+.btn_black{
+    background: #4f5156;
+}
+.btn_gray{
+    background: #989898;
+}
+/*有结果*/
+.success{
+    position: relative;
+    height: 40px;
+}
+.success img{
+    position: relative;
+    top: -60px;
+    display: inline-block;
+    height: 90px;
+    width: auto;
+}
+#result_red img{
+    width: 100% !important;
+    height: 100% !important;
+}
+/*绑定手机号*/
+input{
+    margin: 0;
+    padding: 0 0 0 10px;
+    font-size: 17px;
+    height: 35px;
+    color: black;
+    background: #f9d574;
+    border: 1px solid black;
+}
+input::-webkit-input-placeholder{
+	color: black;
+}
+.checkNumber{
+    margin-top: 5px;
+    display: inline-block;
+    width: 59%; 
+}
+.checkInfo{
+    display: inline-block;
+    width: 38%; 
+    vertical-align: middle;
+}
+.timer{
+    height: 35px;
+    line-height: 35px;
+    color: #a37600;
+    background: #fee7ac;
+    box-shadow: 2px 2px 1px #755910;
+    border-radius: 5px;
+}
+.timer_active{
+    color: #fee7ac;
+    background: #a37600;
+}
+.error_info{
+    font-size: 15px;
+    line-height: 2;
+    text-align: left;
+    color: #e02823;
+}
+.error_info1{
+    line-height: 1;
+}
+.btn_info{
+    padding: 10px 0;
+    padding-left: 17px;
+    font-size: 14px;
+    text-align: left;
+    color: black;
+}
+.btn_info1{
+    font-size: 14px;
+    text-align: center;
+    color: white;
+}
+/*选择地址*/
+#choiceaddress input{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0px 2px 1px black;
+}
+.address_title{
+    margin: 0 5px 0 5px;
+    padding: 5px 0;
+    text-indent: 10px;
+    font-size: 15px;
+    text-align: left;
+    color: #e02823;
+    background: #fddc84;
+}
+.list{
+    margin: 0 5px 0 5px;
+    padding: 0 10px;
+    height: 90px;
+    color: #59310a;
+    background: #fddc84;
+    overflow: auto;
+}
+.address{
+    position: relative;
+    margin-bottom: 5px;
+    height: 35px;
+    text-align: left;
+    font-size: 14px;
+    overflow: hidden;
+}
+.active::before{
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    content: '';
+    height: 20px;
+    width: 17px;
+    background: url(../img/moneylottery/right.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
