@@ -6,11 +6,11 @@ window.addEventListener("DOMContentLoaded", function() {
 	var last_update = new Date().getTime(); //定义一个变量记录上一次摇动的时间
 	//定义x、y、z记录三个轴的数据以及上一次触发的时间
 	var x = 0,
-			y = 0,
-			z = 0,
-			last_x = 0,
-			last_y = 0,
-			last_z = 0;
+		y = 0,
+		z = 0,
+		last_x = 0,
+		last_y = 0,
+		last_z = 0;
 
 	//图片资源		
 	var host = "jpdish/";
@@ -89,7 +89,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			}
 			$(".food_bg").removeClass("active").hide();
 			$(".result").show();
-		}, 3000);
+		}, 1500);
 	});
 	// 返回首页
 	$(".result_btn a").on("click", function() {
