@@ -2,64 +2,46 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>CSS反转</title>
+	<title>Document</title>
 	<style>
-		.container{
+		.flip{
 			position:relative;
-		    height: 100px;
-    		width: 100px;
-    		transition: transform .5s ease;
-    		transform: rotateY(0deg);
+			width:100px;
+			height:100px;
+			overflow:hidden;
+			z-index:0;
 		}
-		.container div{
+		.flip div{
 			position:absolute;
 			top:0;
 			left:0;
-			font-size:35px;
-			font-weight:bolder;
-			height:100px;
-			width:100px;
+			height:100%;
+			width:100%;
 			color:white;
-			transition: transform .5s ease;
-			backface-visibility:hidden; 
+			transition:all 1s;
 		}
 		.front{
 			background:red;
-			z-index:9;
+			z-index:10;
+			backface-visibility:hidden;
 		}
 		.back{
-			background:black;
+			background:blue;
+			transform: rotateY(180deg);
 			z-index:1;
 		}
-		.flip{
+		.flip:hover div.front{
 			transform: rotateY(180deg);
+		}
+		.flip:hover div.back{
+			transform: rotateY(0deg);
 		}
 	</style>
 </head>
 <body>
-	<div class="container">
-		<div class="front">front</div>
-		<div class="back flip">back</div>
+	<div class="flip">
+		<div class="front">前面</div>
+		<div class="back">后面</div>
 	</div>
-	<script>
-		document.querySelector(".front").addEventListener("click",function(){
-			if(this.className == "front"){
-				this.className = "front flip";
-				document.querySelector(".back").className="back";
-			}else{
-				this.className = "front";
-				document.querySelector(".back").className="back flip";
-			}
-		});
-		document.querySelector(".back").addEventListener("click",function(){
-			if(this.className == "back"){
-				this.className = "back flip";
-				document.querySelector(".front").className="front";
-			}else{
-				this.className = "back";
-				document.querySelector(".front").className="front flip";
-			}
-		});
-	</script>
 </body>
 </html>
