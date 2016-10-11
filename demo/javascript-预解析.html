@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		console.log(a);
+	</script>
+	<script>
+		function a(){}
+		var a = 123;
+	</script>
+	// 结论
+	// script标签会影响javascript的预解析，比如函数声明提升
+	// 预解析阶段，变量会置为undefined
+	// 函数的优先级比变量优先级高，同名会覆盖掉变量
+</body>
+</html>
