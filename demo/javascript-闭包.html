@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var bb = (function(){
+			var insideVar = 1;
+			console.log(this);
+			return {
+				getInsideVar:function(){
+					console.log(this);
+					return insideVar;
+				},
+				setInsideVar:function(newVar){
+					insideVar = newVar;
+				}
+			}
+		})();
+		// 闭包是封闭的，自成一个局部作用域
+		// 通常使用匿名函数来生成
+		// 闭包通常需要暴漏出一些方法来操作内部的作用域
+		// 形状是一个半lambda的结构
+		// 通常使用另一个变量来保存
+	</script>
+</body>
+</html>
