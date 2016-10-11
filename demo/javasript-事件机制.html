@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<header>我是header</header>
+	<script>
+		document.body.addEventListener("click",function(){console.log("1")},true);
+		document.body.addEventListener("click",function(){console.log("4")},false);
+		document.querySelector("header").addEventListener("click",function(){console.log("2")},true);
+		document.querySelector("header").addEventListener("click",function(){console.log("3")},false);
+		// 结论
+		// 先捕获，后冒泡
+		// 当然中间可以截断，阻止事件传播和冒泡
+	</script>
+</body>
+</html>
