@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.fly{
+			/*相对定位，伪类超过本元素隐藏*/
+			position:relative;
+			overflow:hidden;
+		}
+		.fly:hover:after{
+			transform:translateX(590px) skewX(-35deg);
+			/* 在hover里写过渡，杜绝回滚动画*/
+			transition:all 1.5s;
+		}
+		.fly:after{
+			content:'';
+			position:absolute;
+			top:0;
+			left:0;
+			height:100%;
+			width:30px;
+			background: linear-gradient(to right, rgba(255,255,255,0),white 50%,rgba(255,255,255,0));
+			transform:translateX(-190px) skewX(-35deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="fly">
+		<img src="images/girl2.jpg" alt="">
+	</div>
+	123
+</body>
+</html>
