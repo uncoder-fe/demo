@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.rect{
+			height:50px;
+			width:100px;
+			background:green;
+		}
+		.circle{
+			height:50px;
+			width:50px;
+			background:green;
+			border-radius:100%;
+		}
+		.ellipse{
+			height:50px;
+			width:100px;
+			background:green;
+			border-radius:50%;
+		}
+		.triangle-up{
+			height: 0;
+			width: 0;
+			border-top: none;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+			border-bottom: 100px solid green;
+		}
+		.trapezoid{
+			height:0;
+			width:50px;
+			border-top: none;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+			border-bottom: 100px solid green;
+		}
+		.parallelogram{
+			width: 100px;
+			height: 50px;
+			transform: translate(10px,0) skew(-20deg);
+			background: green;
+		}
+	</style>
+</head>
+<body>
+	<!--矩形-->
+	<p>矩形</p>
+	<div class="rect"></div>
+	<!--圆形-->
+	<p>圆形</p>
+	<div class="circle"></div>
+	<!--椭圆形-->
+	<p>椭圆形</p>
+	<div class="ellipse"></div>
+	<!--向上的三角形-->
+	<p>向上的三角形</p>
+	<div class="triangle-up"></div>
+	<!--梯形-->
+	<p>梯形</p>
+	<div class="trapezoid"></div>
+	<!--平行四边形-->
+	<p>平行四边形</p>
+	<div class="parallelogram"></div>
+</body>
+</html>

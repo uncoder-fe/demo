@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div.element{
+			position:relative;
+			height:50px;
+			width: 300px;
+    		background: #e6e6e6;
+		}
+		span{
+			position:absolute;
+			top:0;
+			left:0;
+			height:100%;
+			width:100%;
+			overflow:hidden;
+		}
+	</style>
+</head>
+<body>
+	<div class="element">
+		<span></span>
+		如今一个人听歌总是会觉得失落
+	</div>
+	<script>
+		document.querySelector("span").addEventListener('click',function(event){
+			var that = this;
+			var pageX = event.pageX;
+			var pageY = event.pageY;
+			var moveIng = document.createElement('div');
+				moveIng.style['position'] = 'absolute';
+				moveIng.style['borderRadius'] = '50%';
+				moveIng.style['height'] = '10px';
+				moveIng.style['width'] = '10px';
+				moveIng.style['opacity'] = '0.75';
+				moveIng.style['background'] = 'rgba(255, 0, 0,.5)';
+				moveIng.style['top'] = (pageY-8-5)+'px';
+				moveIng.style['left'] = (pageX-8-5)+'px';
+				moveIng.style['opacity'] = '0.5';
+				moveIng.style['transform'] = 'scale(1)';
+				this.appendChild(moveIng);
+				window.getComputedStyle(moveIng).transform;
+				moveIng.style['opacity'] = '0';
+				moveIng.style['transform'] = 'scale(30)';
+				moveIng.style['transition'] = 'transform 1s cubic-bezier(0.23,1,0.23,1),opacity 1s cubic-bezier(0.23,1,0.23,1)';
+		});
+		document.querySelector("body").addEventListener('transitionend',function(event){
+			var pa = event.target['parentNode'];
+			pa.removeChild(event.target);
+		});
+	</script>
+</body>
+</html>
