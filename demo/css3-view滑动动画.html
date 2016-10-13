@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html,body,h1{
+			margin:0;
+			padding:0;
+		}
+		html,body{
+			height:100%;
+			width:100%;
+			text-align:center;
+			overflow:hidden;
+		}
+		.view{
+			height:100%;
+			width:100%;
+			background:gray;
+		}
+		.scroll-view{
+			height:100%;
+			width:100%;
+			background:green;
+			transform:translate3d(100%,-100%,0);
+			transition:transform .3s linear;
+		}
+		.active{
+			transform:translate3d(0,-100%,0);
+		}
+	</style>
+</head>
+<body>
+	<div class="view">
+		<h1>我是占位......</h1>
+		<button>来一个</button>
+	</div>
+	<div class="scroll-view">
+		<br><br><br><br><br><h2>滑动的内容</h2>
+	</div>
+	<script>
+		document.querySelector('button').addEventListener('click',function(){
+			var el = document.querySelector('.scroll-view');
+			var className = el.getAttribute('class');
+			el.setAttribute('class',className+' active');
+		});
+		document.querySelector('.scroll-view').addEventListener('click',function(){
+			var el = document.querySelector('.scroll-view');
+			el.setAttribute('class','scroll-view');
+		});
+	</script>
+</body>
+</html>
