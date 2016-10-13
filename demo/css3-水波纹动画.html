@@ -41,11 +41,13 @@
 				moveIng.style['opacity'] = '0.5';
 				moveIng.style['transform'] = 'scale(1)';
 				this.appendChild(moveIng);
+				// 强制浏览器刷新当前元素的样式，异步渲染变为同步的现象
 				window.getComputedStyle(moveIng).transform;
 				moveIng.style['opacity'] = '0';
 				moveIng.style['transform'] = 'scale(30)';
 				moveIng.style['transition'] = 'transform 1s cubic-bezier(0.23,1,0.23,1),opacity 1s cubic-bezier(0.23,1,0.23,1)';
 		});
+		// transitionend委托给body，统一监听动画的结束
 		document.querySelector("body").addEventListener('transitionend',function(event){
 			var pa = event.target['parentNode'];
 			pa.removeChild(event.target);
