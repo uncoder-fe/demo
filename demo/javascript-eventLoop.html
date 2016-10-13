@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		setTimeout(function(){console.log(1);},0);
+		console.log(2);
+		setTimeout(function(){console.log(3);},0);
+		// 结论
+		// 单线程，一次只能完成一个工作
+		// 异步事件会挨个加到队列里，上一个执行完了，从队列里提出来一个
+	</script>
+</body>
+</html>
