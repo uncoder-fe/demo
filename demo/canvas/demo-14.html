@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>流星</title>
+	<style>
+		canvas{
+			border: 1px solid #dedede;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" height="500" width="500"></canvas>
+	<script>
+		const myCanvas = document.querySelector('#canvas');
+		const ctx = myCanvas.getContext('2d');
+		ctx.fillStyle = 'black';
+		let rid = window.requestAnimationFrame(step);
+		let point = new Pixel(0,0,500,500);
+		function step(){
+			ctx.clearRect(0, 0, 500, 500);
+			ctx.beginPath();
+			let rangeX = 100;
+			let rangeY = 100;
+			point.x = point.x+5;
+			point.y = point.y+5;
+			ctx.arc(point.x,point.y,5,0,2*Math.PI);
+			const tp = returnQD(point.x,point.y,point.x-rangeX,point.y-rangeY,5);
+			ctx.moveTo(point.x-rangeX,point.y-rangeY);
+			ctx.lineTo(tp[0].x,tp[0].y);
+			ctx.lineTo(tp[1].x,tp[1].y);
+			ctx.closePath();
+			ctx.fill();
+			rid = window.requestAnimationFrame(step);
+			if(point.y >= 600){
+				point.x = 0;
+				point.y = 0;
+			}
+		}
+		function Pixel(x,y){
+			// 起点
+			this.x = x;
+			this.y = y;
+			// 终点
+			this.endX = 500;
+			this.endY = 500;
+		}
+		function returnQD(cx,cy,x,y,radius){
+			var __dx = cx - x;
+            var __dy = cy - y;
+            //计算点击处与圆心相对于X轴的夹角
+            var __r1 = Math.atan2(__dy, __dx);
+            //计算点击处与圆心、点击处与切点1这两条线段间的夹角
+            var __d1 = Math.sqrt(__dx*__dx + __dy*__dy);
+            var __r2 = Math.asin(radius/__d1);
+            //计算从切点1向圆的垂直直径做垂线形成的直角三角形的一个角
+            var __r3 = __r1 - __r2;
+            //计算坐标系中的角度
+            var __r4 = __r3 - Math.PI/2;
+            //计算切点1相对于圆心的x、y坐标
+            var __x1 = radius * Math.cos(__r4);
+            var __y1 = radius * Math.sin(__r4);
+
+            //计算点击处与切线2相对于X轴的夹角
+            var __r5 = Math.PI/2 - __r1 - __r2;
+            //计算坐标系中的角度
+            var __r6 = -__r5;
+            //计算切点2相对于圆心的x、y坐标
+            var __x2 = radius * Math.cos(__r6);
+            var __y2 = radius * Math.sin(__r6);
+			return [{x:cx+__x1,y:cy+__y1},{x:cx-__x2,y:cy-__y2}]
+		}
+	</script>
+</body>
+</html>

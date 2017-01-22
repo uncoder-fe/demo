@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>粒子</title>
+	<style>
+		canvas{
+			border: 1px solid #dedede;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" height="500" width="500"></canvas>
+	<script>
+		const myCanvas = document.querySelector('#canvas');
+		const ctx = myCanvas.getContext('2d');
+		ctx.save();
+		ctx.font = '55px xxoo';
+		ctx.fillText('小傻师哥',130,200);
+		ctx.fill();
+		// 获取原始点坐标，色值
+		const iData = ctx.getImageData(0, 0, 500, 500);
+		const colorsData = iData.data;
+		const points = [];
+		for(let i=1;i<=500;i++){
+			for(let j=1;j<=500;j++){
+				let x = i;
+				let y = 500*(j-1)+i;
+				let r = colorsData[(y-1)*4];
+				let g = colorsData[(y-1)*4+1];
+				let b = colorsData[(y-1)*4+2];
+				let a = colorsData[(y-1)*4+3];
+				let rgba = 'rgba('+r+','+g+','+b+','+(a/255).toFixed(2)+')';
+				if(a > 0){
+					points.push({x,y,rgba});
+				}
+			}
+		}
+		for(let i=0;i<points.length;i++){
+			let x = points[i].x;
+			let y = (points[i].y-x)/500+1;
+			let rgba = points[i].rgba;
+			ctx.fillStyle = rgba;
+			ctx.fillRect(x,y+60,1,1);
+		}
+	</script>
+</body>
+</html>

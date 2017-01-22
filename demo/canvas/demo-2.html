@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>圆球拖走</title>
+	<style>
+		canvas{
+			max-width: 100%; 
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="mycanvas" height="500" width="500"></canvas>
+	<script>
+		var mycanvas = document.querySelector('#mycanvas');
+		var ctx = mycanvas.getContext('2d');
+		centerBall();
+		// 中心球
+		function centerBall(){
+			var x = mycanvas.offset
+			ctx.beginPath();
+			ctx.fillStyle = '#b4c16e';
+			ctx.arc(250, 250, 50, 0, 2 * Math.PI);
+			ctx.fill();
+		}
+		// 移动球
+		function moveBall(x,y){
+			ctx.clearRect(0,0,500,500);
+			// center
+			centerBall();
+			// move
+			ctx.beginPath();
+			ctx.fillStyle = '#b4c16e';
+			ctx.arc(x, y, 50, 0, 2 * Math.PI);
+			ctx.fill();
+			// line
+			getRectPoints(50,x,y);
+		}
+		mycanvas.addEventListener('touchmove',function(event){
+			var point = getCanvasPoint.call(this,event);
+			moveBall(point.x,point.y);
+		});
+
+		/**
+		 * 获取canvas坐标系中的点击位置
+		 */
+		function getCanvasPoint(event){
+			// 视窗偏移量
+			var offsetLeft = this.offsetLeft;
+			var offsetTop = this.offsetTop;
+			// canvas缩放后的尺寸
+			var offsetHeight = this.offsetHeight;
+			var offsetWidth = this.offsetWidth;
+			// 触摸位置
+			var eventX = event.changedTouches[0].pageX;
+			var eventY = event.changedTouches[0].pageY;
+			// 相对位置
+			var canvasPointX = ((eventX-offsetLeft)/offsetWidth)*500;
+			var canvasPointY = ((eventY-offsetTop)/offsetHeight)*500;
+			return {x:canvasPointX,y:canvasPointY}
+		}
+		/**
+		 * 获取切点
+		 */
+		function getRectPoints(radius,x,y){
+			// 矩形，所以圆心的角度 和 小三角形的角度相同
+			var angle = Math.atan((250 - x)/(250 - y));
+			// 小三角形的两条边
+			var yy = radius * Math.sin(angle);
+			var xx = Math.sqrt(Math.pow(radius, 2) - Math.pow(yy, 2));
+			var y1 = 250 - yy;
+			var x1 = 250 + xx;
+			var y2 = 250 + yy;
+			var x2 = 250 - xx;
+			var y3 = y - yy;
+			var x3 = x + xx;
+			var y4 = y + yy;
+			var x4 = x - xx;
+
+			// 考虑到 控制点可能变动，所以这里算了两次
+			var cx1 = (x1 + x4) / 2;
+			var cy1 = (y1 + y4) / 2;
+			var cx2 = (x2 + x3) / 2;
+			var cy2 = (y2 + y3) / 2;
+
+			ctx.beginPath();
+			ctx.moveTo(x1,y1);
+			ctx.quadraticCurveTo(cx1, cy1, x3,y3);
+			ctx.lineTo(x4,y4);
+			ctx.quadraticCurveTo(cx2, cy2, x2,y2);
+			ctx.lineTo(x1,y1);
+			ctx.fillStyle = '#b4c16e';
+			ctx.fill();
+		}
+	</script>
+</body>
+</html>

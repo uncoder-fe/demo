@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="len">
+<head>
+	<meta charset="utf-8"/>
+	<title>像素粒子</title>
+</head>
+<body>
+	<canvas id="myCanvas" width="500" height="500"></canvas>
+	<script type="text/javascript">
+		const canvas = document.querySelector("#myCanvas");
+		const context = canvas.getContext('2d');
+		// 文本对像
+		context.fillStyle = 'red';
+		context.font = '30px inhert';
+		context.fillText('你', 0, 30);
+
+		// 获取画布上矩形(0,0)~(50,50)区域的像素数据
+		var idata = context.getImageData(0, 0, 50, 50);
+		// data 属性返回一个对象，是一个8位无符号整数的数组Uint8ClampedArray
+		var pixes = idata.data;
+
+		// 像素下数据的位置信息
+		for(var i=0;i<50;i++){
+		for(var j=0;j<50;j++){
+			//这里从第0个开始计算，因为数组是从0开始的,当然也可以从1
+			// console.log('x',i,'y',j,'像素点矩阵的索引',j*50+i);
+			var index = (j*50+i)*4;
+			// 过滤透明的点
+			if(pixes[index+3]==0){ continue;}
+			// console.log('数组的索引',index);
+			console.log('像素值',pixes[index],pixes[index+1],pixes[index+2],pixes[index+3]);
+		}
+		}
+		// 直接遍历像素信息
+		for(var z=0;z<pixes.length;z+=4){
+
+		// 过滤透明的点
+		if(pixes[z+3]==0){ continue; }
+
+		var red = pixes[z];
+		var green = pixes[z+1];
+		var blue = pixes[z+2];
+		var alpha = pixes[z+3];
+		// 颜色反转
+		pixes[z] = 255 - red;
+		pixes[z+1] = 255 - green;
+		pixes[z+2] = 255 - blue;
+		}
+		context.putImageData(idata, 0, 0);
+	</script>
+</body>
+</html>

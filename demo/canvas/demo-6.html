@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="len">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>数字点阵</title>
+	<style>
+		canvas{
+			max-width:100%;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+	<script src="src/data.js"></script>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var position = [];
+		for(var i = 0;i<digit[0].length;i++){
+			for(var j = 0;j<digit[0][i].length;j++){
+				if(digit[0][i][j]){
+					console.log('position',j*20+50,i*20+100);
+					position.push(j*20+50+'-'+(i*20+100));
+					var x = j*20+50;
+					var y = i*20+100;
+					ball(x,y);
+				}
+			}
+		}
+		function ball(x,y){
+			ctx.beginPath();
+			ctx.fillStyle = 'red';
+			ctx.arc(j*20+50,i*20+100,8,0,2*Math.PI);
+			ctx.closePath();
+			ctx.fill();
+		}
+	</script>
+</body>
+</html>
+

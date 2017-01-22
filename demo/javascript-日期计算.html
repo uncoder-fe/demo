@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .date-picker{
+            width: 400px;
+            height: auto;
+        }
+        .date-title{
+            margin-bottom: 5px;
+            display: flex;
+            height: 30px;
+            line-height: 30px;
+            font-size: 12px;
+            background: aqua;
+        }
+        .date-title div{
+            display: inline-block;
+            flex: 1;
+            text-align: center;
+        }
+        .date-list{
+            text-align: center;
+        }
+        .date-list div{
+            display: inline-block;
+            margin-bottom: 4px;
+            width: 13%;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            color: #000;
+        }
+        .date-list div.gray{
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="date-picker">
+        <div>
+            <div class="date-title">
+                <div>星期一</div>
+                <div>星期二</div>
+                <div>星期三</div>
+                <div>星期四</div>
+                <div>星期五</div>
+                <div>星期六</div>
+                <div>星期日</div>
+            </div>
+            <div class="date-list">
+                <div data-key="1" class="gray">1</div>
+                <div data-key="2">2</div>
+                <div data-key="3">3</div>
+                <div data-key="4">4</div>
+                <div data-key="5">5</div>
+                <div data-key="6">6</div>
+                <div data-key="7">7</div>
+                <div data-key="8">8</div>
+                <div data-key="9">9</div>
+                <div data-key="10">10</div>
+                <div data-key="11">11</div>
+                <div data-key="12">12</div>
+                <div data-key="13">13</div>
+                <div data-key="14">14</div>
+                <div data-key="15">15</div>
+                <div data-key="16">16</div>
+                <div data-key="17">17</div>
+                <div data-key="18">18</div>
+                <div data-key="19">19</div>
+                <div data-key="20">20</div>
+                <div data-key="21">21</div>
+                <div data-key="22">22</div>
+                <div data-key="23">23</div>
+                <div data-key="24">24</div>
+                <div data-key="25">25</div>
+                <div data-key="26">26</div>
+                <div data-key="27">27</div>
+                <div data-key="28">28</div>
+                <div data-key="29">29</div>
+                <div data-key="30">30</div>
+                <div data-key="31">31</div>
+                <div data-key="32">32</div>
+                <div data-key="33">33</div>
+                <div data-key="34">34</div>
+                <div data-key="35">35</div>
+                <div data-key="36">36</div>
+                <div data-key="37">37</div>
+                <div data-key="38">38</div>
+                <div data-key="39">39</div>
+                <div data-key="40">40</div>
+                <div data-key="41">41</div>
+                <div data-key="42">42</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const data = initData(Date.now()); 
+        console.log(data);
+        function initData(dateString){
+            const date = new Date(dateString);
+            let days = new Date(date.getFullYear(),date.getMonth(),0).getDate();
+            let firstDay = new Date(date.getFullYear(),date.getMonth()-1,1).getDay();
+            return {
+                dayCount: days,
+                firstDay: firstDay
+            };
+        }   
+    </script>
+</body>
+</html>

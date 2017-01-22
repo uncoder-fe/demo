@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>歌词show</title>
+	<style>
+		canvas{ border:1px solid red;}
+	</style>
+</head>
+<body>
+	<canvas id="mycanvas" height="500" width="500"></canvas>
+	<script>
+		// 文字
+		var showTexts = ['原来你是我最想留住的幸运','原来我们和爱情曾经靠得那么近','那为我对抗世界的决定','那陪我淋的雨','一幕幕都是你','一尘不染的真心'];
+		var mycanvas = document.querySelector('#mycanvas');
+		var ctx = mycanvas.getContext('2d');
+		// style-1
+		drawText(showTexts[0],35,40,'red',1);
+		// style-2
+		drawText(showTexts[1],35,80,'green',2);
+		// style-3
+		drawText(showTexts[2],35,120,'blue',3);
+		function drawText(text,x,y,style,animate){
+			switch (animate){
+				case 1:
+					_animateType(text,x,y,style);
+					break;
+				case 2:
+					_animateFade(text,x,y,style);
+					break;
+				case 3:
+					_animateFly(text,x,y,style);
+					break;
+			}
+		}
+		// style-1，打字机
+		function _animateType(text,x,y,style){
+			var arry = text.split('');
+			var count = 0;
+			var oldTime = Date.now();
+			var rafid = window.requestAnimationFrame(step);
+			function step(){
+				var newTime = Date.now();
+				if(arry.length == 0){
+					window.cancelAnimationFrame(rafid);
+				}else if(newTime - oldTime > 150 && arry.length >0){
+					count++;
+					oldTime = newTime;
+					ctx.beginPath();
+					ctx.fillStyle = style;
+					ctx.font = "30px serif";
+					ctx.fillText(arry.shift(),x*count+10,y);
+					ctx.closePath();
+				}
+				rafid = window.requestAnimationFrame(step);
+			}
+		}
+		// style-2，渐显
+		function _animateFade(text,x,y,style){
+			var opacity = 0;
+			var oldTime = Date.now();
+			var rafid = window.requestAnimationFrame(step);
+			function step(){
+				var newTime = Date.now();
+				if(opacity >= 1){
+					window.cancelAnimationFrame(rafid);
+				}else{
+					opacity = (newTime-oldTime)/1000;
+					ctx.beginPath();
+					ctx.save();
+					ctx.globalAlpha = opacity;
+					ctx.fillStyle = style;
+					ctx.font = "30px serif";
+					ctx.clearRect(x,y-30,ctx.measureText(text)['width'],40);
+					ctx.fillText(text,x,y);
+					ctx.restore();
+					ctx.closePath();
+				}
+				rafid = window.requestAnimationFrame(step);
+			}	
+		}
+		// style-3，飞入
+		function _animateFly(text,x,y,style){
+			var oldTime = Date.now();
+			var rafid = window.requestAnimationFrame(step);
+			var startX = 500;
+			var range = (3000/(startX-x)).toFixed(0)/250;
+			function step(){
+				var newTime = Date.now();
+				if(startX <= x){
+					window.cancelAnimationFrame(rafid);
+				}else{
+					startX = startX-(newTime-oldTime)*range;
+					ctx.beginPath();
+					ctx.save();
+					ctx.fillStyle = style;
+					ctx.font = "30px serif";
+					ctx.clearRect(0,y-30,500,50);
+					ctx.transform(1,0,0,1,startX,0);
+					ctx.fillText(text,x,y);
+					ctx.restore();
+					ctx.closePath();
+				}
+				rafid = window.requestAnimationFrame(step);
+			}
+		}
+		// 
+	</script>
+</body>
+</html>

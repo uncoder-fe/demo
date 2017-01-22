@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="len">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>画板动画</title>
+	<style>
+		canvas{
+			max-width:100%;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var historyLine = [];
+		var temp = [];
+		var lastX,lastY;
+		canvas.addEventListener('touchstart',function(event){
+			var point = getCanvasPoint.call(this,event);
+			lastX = point.x;
+			lastY = point.y;
+			pen(point.x,point.y);
+		});
+		canvas.addEventListener('touchmove',function(event){
+			var point = getCanvasPoint.call(this,event);
+			pen(point.x,point.y);
+			lastX = point.x;
+			lastY = point.y;
+		});
+		canvas.addEventListener('touchend',function(event){
+			historyLine.push(temp);
+		});
+		// 粉笔
+		function pen(x,y){
+			ctx.beginPath();
+			ctx.strokeStyle = 'black';
+			ctx.lineWidth = 10;
+ 			ctx.lineJoin = "round";
+  			ctx.lineCap = 'round';
+			ctx.moveTo(lastX,lastY);
+			ctx.lineTo(x,y);
+			//console.log('起始点',lastX,lastY);
+			//console.log('结束点',x,y);
+			temp.push(lastX.toFixed(2)+'-'+lastY.toFixed(2)+'-'+x.toFixed(2)+'-'+y.toFixed(2));
+			ctx.stroke();
+		}
+		// 重画
+		function redraw(data){
+			ctx.clearRect(0,0,500,500);
+			ctx.fillStyle = 'black';
+			ctx.strokeStyle = 'black';
+			ctx.lineWidth = 10;
+			ctx.lineJoin = "round";
+			ctx.lineCap = 'round';
+			for(var i=0;i<data.length;i++){
+				_animateType(data[i])
+				//for(var j=0;j<data[i].length;j++){
+					//var points =  data[i][j].split('-');
+					//ctx.beginPath();
+					//ctx.moveTo(parseFloat(points[0]),parseFloat(points[1]));
+					//ctx.lineTo(parseFloat(points[2]),parseFloat(points[3]));
+					//ctx.closePath();
+					//ctx.stroke();
+				//}
+			}
+		}
+		// 动画
+		function _animateType(data){
+			// 浅拷贝一份数据
+			var arry = [];
+			for(var i=0;i<data.length;i++){
+				arry.push(data[i]);
+			}
+			var count = 0;
+			var oldTime = Date.now();
+			var rafid = window.requestAnimationFrame(step);
+			function step(){
+				var newTime = Date.now();
+				if(arry.length == 0){
+					window.cancelAnimationFrame(rafid);
+				}else if(newTime - oldTime > 15 && arry.length >0){
+					count++;
+					oldTime = newTime;			
+					var points = arry.shift().split('-');
+					ctx.beginPath();
+					ctx.moveTo(parseFloat(points[0]),parseFloat(points[1]));
+					ctx.lineTo(parseFloat(points[2]),parseFloat(points[3]));
+					ctx.closePath();
+					ctx.stroke();
+				}
+				rafid = window.requestAnimationFrame(step);
+			}
+		}
+		// 清空画布
+		function clearRect(){
+			historyLine = [];
+			ctx.clearRect(0,0,500,500);
+		}
+		/**
+		 * 获取canvas坐标系中的点击位置
+		 */
+		function getCanvasPoint(event){
+			// 视窗偏移量
+			var offsetLeft = this.offsetLeft;
+			var offsetTop = this.offsetTop;
+			// canvas缩放后的尺寸
+			var offsetHeight = this.offsetHeight;
+			var offsetWidth = this.offsetWidth;
+			// 触摸位置
+			var eventX = event.changedTouches[0].pageX;
+			var eventY = event.changedTouches[0].pageY;
+			// 相对位置
+			var canvasPointX = ((eventX-offsetLeft)/offsetWidth)*500;
+			var canvasPointY = ((eventY-offsetTop)/offsetHeight)*500;
+			return {x:canvasPointX,y:canvasPointY}
+		}
+	</script>
+</body>
+</html>

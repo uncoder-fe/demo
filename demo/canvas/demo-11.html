@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>粒子</title>
+	<style>
+		canvas{
+			border: 1px solid #dedede;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" height="500" width="500"></canvas>
+	<script>
+		const myCanvas = document.querySelector('#canvas');
+		const ctx = myCanvas.getContext('2d');
+		ctx.fillRect(0,0,500,500);
+		// 设置一个初始透视距离
+		let focalLength = 500;
+		// 生成点
+		let points = [];
+		for(let i=0;i<400;i++){
+			let x = Math.ceil(Math.random()*500)-250;
+			let y = Math.ceil(Math.random()*500)-250;
+			let z = Math.ceil(Math.random()*500)-250;
+			let pixel = new Pixel(x, y, z);
+			points.push(pixel);
+		}
+		//render();
+		// 渲染
+		function render(){
+			ctx.clearRect(0,0,500,500);
+			for(let i=0;i<points.length;i++){
+				drawPoint(points[i]);
+			}
+		}
+		// 定义一个点
+		function Pixel(x,y,z){
+			this.x = x;
+			this.y = y;
+			this.z = z;
+			this.radius = 5;
+		}
+		function drawPoint(point){
+			const {x , y, z, radius} = point;
+			let scale = focalLength / (focalLength + z);
+			let curX = x*scale+250;
+			let curY = y*scale+250;
+			//console.log(scale);
+			ctx.beginPath();
+			ctx.fillStyle = 'black';
+			ctx.arc(curX, curY, scale*3, 0, 2*Math.PI);
+			ctx.fill();
+			ctx.closePath();
+		}
+		setInterval(function(){
+			focalLength = focalLength-2;
+			if(focalLength < 300){
+				focalLength = 500;
+			}
+			render();
+		},60)
+	</script>
+</body>
+</html>

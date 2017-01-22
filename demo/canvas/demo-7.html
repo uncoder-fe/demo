@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="len">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>fps计算</title>
+	<style>
+		canvas{
+			max-width:100%;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+			ctx.fillStyle = 'red';
+		canvas.addEventListener('click',function(){
+			fps();
+		});
+		// fps计算
+		function fps(){
+			// 开始时间
+			var startTime = new Date().getTime();
+			var fps = 0;
+			var rid = window.requestAnimationFrame(step);
+			function step(){
+				// 当前持续时间，单位/秒
+				var time = (new Date().getTime()-startTime)/1000;
+				if(time > 1){
+					console.log('此设备的fps',fps);
+					window.cancelAnimationFrame(rid);
+				}else{
+					fps = fps+1;
+					ctx.clearRect(0,0,500,500);
+					ctx.font = '50px 微软雅黑';
+					console.log(fps,time,fps/time);
+					ctx.fillText('当前fps为：'+(fps/time).toFixed(2),20,200);
+					rid = window.requestAnimationFrame(step);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

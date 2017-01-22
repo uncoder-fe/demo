@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="len">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>画线</title>
+	<style>
+		canvas{
+			max-width:100%;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		
+		// 一根直线
+		function line(){
+			// 开始时间
+			var startTime = new Date().getTime();
+			var start = 0;
+			var end = 200;
+			var range = 2;
+			var rid = window.requestAnimationFrame(step);
+			function step(){
+				// 当前持续时间，单位/秒
+				var time = (new Date().getTime()-startTime)/1000;
+				if(start > end){
+					window.cancelAnimationFrame(rid);
+				}else{
+					start = start+range;
+					ctx.clearRect(0,0,500,500);
+					ctx.moveTo(0,20);
+					ctx.lineTo(start,20);
+					ctx.stroke();
+					rid = window.requestAnimationFrame(step);
+				}
+			}
+		}
+		// 一条曲线
+		graph();
+		function graph(){
+			// 开始时间
+			var startTime = new Date().getTime();
+			var start = 0;
+			var end = 120;
+			var range = 0.5;
+			var rid = window.requestAnimationFrame(step);
+			function step(){
+				// 当前持续时间，单位/秒
+				var time = (new Date().getTime()-startTime)/1000;
+				if(start > end){
+					window.cancelAnimationFrame(rid);
+				}else{
+					start = start+range;
+					ctx.clearRect(0,0,500,500);
+					ctx.beginPath();
+					ctx.lineWidth = 10;
+					ctx.moveTo(50,70);
+					ctx.quadraticCurveTo(50, 130-start, 150, 20);
+					ctx.moveTo(50,70);
+					ctx.quadraticCurveTo(50, start, 150, 110);
+					ctx.stroke();
+					rid = window.requestAnimationFrame(step);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

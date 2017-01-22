@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" height="500" width="500"></canvas>
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        let ctx = canvas.getContext('2d');
+
+        let iData = getPositions();
+
+        function getPositions(){
+            ctx.clearRect(0, 0, 500, 500);
+            ctx.font = "50px xxoo";
+            ctx.fillText("test words!", 50, 200);
+            
+            const pixelData = ctx.getImageData(0,0,500,500);
+            let iData = pixelData.data;
+            let positionArray = [];
+            for(let i=0; i<500; i+=4){
+                for(let j=0; j<500; j+=4){
+                    let index = 500*j+i;
+                    // if(iData[index*4+3] > 0){
+                    //     // 存储有效的像素点
+                    //     //let pixel = new WordPixel(i,j);
+                    //     //console.log(pixel)
+                    //     //positionArray.push(pixel);
+                    // }
+                }
+            }
+            //console.log(positionArray)
+            return positionArray;
+        }
+
+        function WordPixel(x, y) {
+            this.x = x;
+            this.y = y;
+            this.delay = Math.random() * 20;
+            this.delayCount = 0;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>粒子</title>
+	<style>
+		canvas{
+			border: 1px solid #dedede;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" height="500" width="500"></canvas>
+
+    从结果可以推出，save()和restore()中间的设置没了
+    save之前==restore()
+	<script>
+		const myCanvas = document.querySelector('#canvas');
+		const ctx = myCanvas.getContext('2d');
+		ctx.fillStyle = 'red';
+        ctx.fillRect(20,20,50,50);
+        ctx.save();
+
+        ctx.fillStyle = 'black';
+        ctx.fillRect(150,20,50,50);
+
+        ctx.restore();
+        ctx.fillRect(250,20,50,50);
+	</script>
+</body>
+</html>

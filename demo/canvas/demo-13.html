@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>雪花飘啊飘</title>
+	<style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            border:none;
+        }
+		canvas{
+            margin: 0 auto;
+            max-width: 100%;
+		}
+        .img-list{
+            display: none;
+        }
+	</style>
+</head>
+<body>
+	<canvas id="canvas" height="500" width="500"></canvas>
+    <div class="img-list">
+        <img src="img/snow-111.png" id="snow1">
+        <img src="img/snow-222.png" id="snow2">
+        <img src="img/snow-333.png" id="snow3">
+        <img src="img/snow-444.png" id="snow4">
+    </div>
+	<script>
+		const myCanvas = document.querySelector('#canvas');
+		const ctx = myCanvas.getContext('2d');
+        // 获取雪花样式
+        const snowStyle = {
+            1:document.querySelector("#snow1"),
+            2:document.querySelector("#snow2"),
+            3:document.querySelector("#snow3"),
+            4:document.querySelector("#snow4")
+        }
+        const num = 80;
+        // 雪花
+        const sonwPoints = generateSnow(num);
+        // 福字
+        const wordPoints = generateWord();
+        // logo
+        const starPoints = generateStar();
+        let rid = window.requestAnimationFrame(tranistion);
+        let finishCount = 0;
+        function tranistion(){
+            ctx.clearRect(0, 0, 500, 500);
+            // 背景
+            bg();
+            // 雪花
+            snow();
+            // 福字
+            word();
+            // logo流星
+            logo();
+            rid = window.requestAnimationFrame(tranistion);
+            if(finishCount < 2000){
+                finishCount++;
+            }else{
+                window.cancelAnimationFrame(rid);
+            }
+        }
+        function bg(){
+            ctx.save();
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0,0,500,500);
+            ctx.restore();
+        }
+        function logo(){
+            ctx.save();
+            let words = ['小','傻','师','哥'];
+            for(let i=0;i<4;i++){
+                let point = starPoints[i];
+                ctx.beginPath();
+                if(point.delay > point.delayCount){
+                    point.delayCount +=1; 
+                    continue;
+                }
+                if(point.y >= point.endy){
+                    point.x = point.endx;
+                    point.y = point.endy;
+                    ctx.font = '20px ooxx';
+                    //画布渐变
+                    let gradient = ctx.createLinearGradient(350,480,420,480);
+                    gradient.addColorStop(0,"#FF0000");
+                    gradient.addColorStop(0.5,"#FF8000");
+                    gradient.addColorStop(0.75,"#FFFF00");
+                    gradient.addColorStop(1,"#7F00FF");
+                    ctx.fillStyle = gradient;
+                    ctx.fillText(words[i],starPoints[i].endx,480);
+                }else{
+                    let rangeX = 100;
+                    let rangeY = 100;
+                    point.x = point.x+5;
+                    point.y = point.y+5;
+                    ctx.fillStyle = point.color;
+                    ctx.arc(point.x,point.y,5,0,2*Math.PI);
+                    const tp = returnQD(point.x,point.y,point.x-rangeX,point.y-rangeY,5);
+                    ctx.moveTo(point.x-rangeX,point.y-rangeY);
+                    ctx.lineTo(tp[0].x,tp[0].y);
+                    ctx.lineTo(tp[1].x,tp[1].y);
+                }
+                ctx.closePath();
+                ctx.fill();
+            }
+            ctx.restore();
+        }
+        function snow(){
+            let range = 25;
+            for (let i = 0; i < num; i++) {
+                let {x, y, height, width, offset, moveRange, delay, delayCount, img} = sonwPoints[i];
+                range = moveRange + 2;
+                let startX = x + Math.sin(range / 360 * 2 * Math.PI) * offset;
+                let startY = y + 1.5;
+                if (startY > 500) { startY = 0; }
+                if (delayCount < delay) {
+                    delayCount++;
+                    sonwPoints[i].delayCount = delayCount;
+                    continue;
+                }
+                sonwPoints[i].x = startX;
+                sonwPoints[i].y = startY;
+                sonwPoints[i].moveRange = range;
+                ctx.beginPath();
+                ctx.drawImage(snowStyle[img], startX, startY, height, width);
+            }
+        }
+        function word(){
+            let range = 25;
+            let num = wordPoints.length;
+            for (let i = 0; i < num; i++) {
+                let {x, y, endx, endy, height, width, offset, moveRange, delay, delayCount, img} = wordPoints[i];
+                range = moveRange + 2;
+                x = x + Math.sin(range / 360 * 2 * Math.PI) * offset;
+                y = y + 1.5;
+                //if (y > 500) { y = 0; }
+                if (delayCount < delay) {
+                    delayCount++;
+                    wordPoints[i].delayCount = delayCount;
+                    continue;
+                }
+                if(y >= endy){
+                    x = endx;
+                    y = endy;
+                }
+                wordPoints[i].x = x;
+                wordPoints[i].y = y;
+                wordPoints[i].moveRange = range;
+                ctx.beginPath();
+                ctx.drawImage(snowStyle[img], x, y, height, width);
+            }
+        }
+        function generateSnow(num){
+            let pointsArry = [];
+            for (let i = 0; i < num; i++) {
+                let size = Math.round(Math.random()*15+15);
+                let config = {
+                    x: Math.round(Math.random() * 500),
+                    y: Math.round(Math.random() * 15 + 5),
+                    endx: 500,
+                    endy: 500,
+                    height: size,
+                    width: size,
+                    offset: (Math.random() * 1.5).toFixed(1),
+                    moveRange: Math.round(Math.random() * 10),
+                    delay: Math.round(Math.random() * 750)
+                }
+                let point = new SnowPixel(config);
+                pointsArry.push(point);
+            }
+            return pointsArry;
+        }
+        function generateWord(){
+            ctx.beginPath();
+            ctx.font = '100px xxoo';
+            ctx.fillText('新',50,300);
+            ctx.fillText('年',150,330);
+            ctx.fillText('快',250,300);
+            ctx.fillText('乐',350,330);
+            ctx.closePath();
+            // 获取原始点坐标，色值
+            const iData = ctx.getImageData(0, 0, 500, 500);
+            const colorsData = iData.data;
+            let points = [];
+            // 取点
+            for(let i=1;i<=500;i+=6){
+                for(let j=1;j<=500;j+=6){
+                    let x = i;
+                    let y = j;
+                    let index = 500*(j-1)+i;
+                    let a = colorsData[(index-1)*4+3];
+                    if(a > 0){
+                        let size = Math.round(Math.random()*5+10);
+                        let config = {
+                            x:x,
+                            y:0,
+                            endx:x,
+                            endy:y,
+                            height:size,
+                            width:size,
+                            offset:1,
+                            moveRange:2,
+                            delay:Math.round(Math.random()*500)
+                        }
+                        let point = new SnowPixel(config);
+                        points.push(point);
+                    }
+                }
+            }
+            return points;
+        }
+        function generateStar(){
+            let points = [];
+            for(let i=0;i<5;i++){
+                let point = new StarPixel(350+20*i-450,0,350+20*i,480,i);
+                points.push(point)
+            }
+            return points;
+        }
+		function SnowPixel(config){
+            this.x = config['x']||0;
+            this.y = config['y']||0;
+            this.endx = config['endx']||0;
+            this.endy = config['endy']||0;
+            this.height = config['height']||5;
+            this.width = config['width']||5;
+            this.offset = config['offset']||1;
+            this.moveRange = config['moveRange']||1;
+            this.delay = config['delay']||0;
+            this.delayCount = 0;
+            this.img = config['img']||Math.round(Math.random()*3+1);
+        }
+        function StarPixel(x,y,endx,endy,color){
+            const colors = ['#FF0000','#FF8000','#FFFF00','#7F00FF'];
+            // 起点
+			this.x = x;
+			this.y = y;
+            // 终点
+            this.endx = endx;
+            this.endy = endy;
+            this.color = colors[color];
+            this.delay = Math.random()*100+300;
+            this.delayCount = 0;
+        }
+        // 返回切点位置
+        function returnQD(cx,cy,x,y,radius){
+			var __dx = cx - x;
+            var __dy = cy - y;
+            //计算点击处与圆心相对于X轴的夹角
+            var __r1 = Math.atan2(__dy, __dx);
+            //计算点击处与圆心、点击处与切点1这两条线段间的夹角
+            var __d1 = Math.sqrt(__dx*__dx + __dy*__dy);
+            var __r2 = Math.asin(radius/__d1);
+            //计算从切点1向圆的垂直直径做垂线形成的直角三角形的一个角
+            var __r3 = __r1 - __r2;
+            //计算坐标系中的角度
+            var __r4 = __r3 - Math.PI/2;
+            //计算切点1相对于圆心的x、y坐标
+            var __x1 = radius * Math.cos(__r4);
+            var __y1 = radius * Math.sin(__r4);
+
+            //计算点击处与切线2相对于X轴的夹角
+            var __r5 = Math.PI/2 - __r1 - __r2;
+            //计算坐标系中的角度
+            var __r6 = -__r5;
+            //计算切点2相对于圆心的x、y坐标
+            var __x2 = radius * Math.cos(__r6);
+            var __y2 = radius * Math.sin(__r6);
+			return [{x:cx+__x1,y:cy+__y1},{x:cx-__x2,y:cy-__y2}]
+		}
+	</script>
+</body>
+</html>
