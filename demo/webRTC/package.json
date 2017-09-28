@@ -1,0 +1,13 @@
+{
+  "name": "webRTC",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "serve": "lite-server"
+  },
+  "dependencies": {
+    "lite-server": "^2.3.0",
+    "socket.io": "^2.0.3"
+  }
+}
