@@ -1,0 +1,178 @@
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+*{
+	outline: 0;
+	-webkit-text-size-adjust: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-font-smoothing: antialiased;
+	-webkit-overflow-scrolling: touch;
+}
+html,body,section,article,nav,ul,li,a,div,input,header,footer,figure,figcaption,p,span{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	width: 100%;
+	font-size: 1pc;
+	font-family: "Helvetica Neue","Hiragino Sans GB W3","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+	line-height: 1;
+	background-image:url(../images/bg.png);
+	background-color: #c5f1fe;
+	background-size: 100%;
+	background-repeat: repeat-y;
+	text-align: center;
+}
+ul::-webkit-scrollbar {
+	background: white;
+	width: 0px;
+}
+ul::-webkit-scrollbar-thumb {
+	border-radius: 0px;
+	background: white;
+}
+.viewport{
+	margin: 0 auto;
+	width: 100%;
+	min-width: 320px;
+	max-width: 750px;
+}
+.hide{
+	display: none;
+}
+img{
+	display: block;
+	max-width: 100%;
+}
+/*自定义*/
+body{
+	padding-bottom: 25px;
+	text-align: center;
+}
+header{
+	padding: 5px 0;
+}
+section{
+	position: relative;
+}
+.result-page{
+	display: none;
+}
+.result-page{
+	padding-top: 10px;
+}
+.garbage{
+	position: absolute;
+	top: .5rem;
+	left: .55rem;
+	height: 25px;
+	width: 25px;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAMAAADWZboaAAAAb1BMVEUAAAAAAAD////6+vr5+fn09PTa2tr+/v7+/v7y8vLd3d3////9/f38/PxPT0/09PT7+/v7+/vs7OzPz8+ampr39/f19fXJycm+vr7v7+/5+fn4+Pjx8fHi4uLY2Niurq7p6elubm7r6+vn5+fh4eEeAjycAAAAJXRSTlMGCJ53b2AylZFVMJqKhAxbf3lJJxVnYyMfTnNsUjUtGUIQRDs6b53cywAAAeNJREFUSMft1dmumzAQBuD+HBIg7FsgC2Q5ff9nbD0zEu6pPSBuKlXnv7GUzOcxtkN+/EcBZRdbsgMqWIWfESVrN2NIHoGkB2ezRFcmnHnjqqFEt20fKukHvzwFKzn5JPI1+gEfDfZSYD6ZHJ2hrwbAQ7fEJ8eDlvNI1k2nQE3rpnyFYlORXiPZlYrHOKQhB8VNQbU/cZRSPq60xdOMmZuCk5mSDqDuIRBSU6CjRaj0ZkpmFLGUfpgxeqEx4wUcJ+WSBK/UpnGBkj5X6d2U3FHkNu2BxIxvjfLsN+Bs04Ns36TSt+xkbdOzbF+r0tGUVMDNpj0fUvpQqNyJ7O8FZzSjRrk2/9J1Qmt2vF6hOdOLTY8Yow20Nw814GjRtMVgul5W6JPb2DSQmRqVykrnP7ueUApd79riFS80k0s2LtRpHzJ/ttBY7mG3SD/tAatrJcf8WKFdyncgXGjCV7sqFuq2199VJXBfaMldbz4plNuF1Geh9OS1n4q98m/7YFF+aSQi/fTNtFnoxJs2KZTtJ50k/fquvIaR6VOkTqMXBn66mu7hTH+QLBXbpQY1Ob0C6SrkjdmltCCq2ihwJi5IqvbspglJ3Ra1S9YFS93iXkVfUl0gUree6EqyD0p2QonlvvOP8guDJho3qO041QAAAABJRU5ErkJggg==');
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+.draw{
+	padding: 30px 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+.draw canvas{
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+}
+footer{
+	margin-top: 15px;
+	text-align: center;
+}
+footer a{
+	margin-bottom: 15px;
+	display: inline-block;
+	height:1rem;
+	width: 85%;
+	font-size: .35rem;
+	line-height: 1rem;
+	color: white;
+	background: #3c8dff;
+	box-shadow: 0 4px 0 #6cb2ff;
+	border-radius: 10px;
+	text-decoration: none;
+}
+/*第二个*/
+.result{
+	text-align: center;
+}
+.number{
+	position: relative;
+	display: inline-block;
+	padding: .35rem 0;
+	height: 3rem;
+	width: 3rem;
+	background: url(../images/r-bg.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+.number :after{
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 44%;
+	border-top:7px solid #1b7aff;
+	border-left:7px solid transparent;
+	border-right:7px solid transparent;
+	border-bottom:none;
+}
+.number p:first-child{
+	font-size: .35rem;
+	color: #1b7aff;
+}
+.number p:last-child{
+	font-size: 1.7rem;
+	color: #1b7aff;
+}
+.result > p{
+	margin-top: 25px;
+}
+.result > p span{
+	display: inline-block;
+	padding: 5px 10px;
+	width: 80%;
+	font-size: .3rem;
+	line-height: 1.3;
+	color: #1b7aff;
+	background: #c6e5ff;
+	border-radius: 5px;
+}
+/*分享*/
+.share-mask{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0,0,0,.75);
+}
+.share-mask img{
+	width: 100%;
+}
+.download{
+	display: none;
+	margin-top: 20px;
+	text-align: center;
+}
+.download a{
+	padding: 0 3px 3px 3px;
+	display: inline-block;
+	font-size: .28rem;
+	font-weight: bold;
+	color: #1b7aff;
+	border-bottom: 1px solid #1b7aff;
+	text-decoration: none;
+}

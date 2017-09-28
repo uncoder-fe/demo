@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>看字猜颜值</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<meta name="apple-mobile-web-app-capable" content="yes" >
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" >
+	<meta name="format-detection" content="telephone=no,email=no" >
+	<meta http-equiv="x-rim-auto-match" content="none" >
+	<meta http-equiv="Expires" content="-1" >
+	<meta http-equiv="Cache-Control" content="no-cache" >
+	<meta http-equiv="Pragma" content="no-cache" >
+	<script src="https://unpkg.com/jquery"></script>
+	<script>
+		// 对应750视觉稿
+		(function (win) {
+			var docEl = win.document.documentElement;
+			var width = docEl.clientWidth;
+			if (width >= 750) { width = 750;}
+			docEl.style.fontSize = 100 * (width / 750) + "px";
+		})(window);
+	</script>
+	<link rel="stylesheet" href="src/index.css">
+</head>
+<body>
+	<div class="init-page">
+		<header>
+			<div class="init"><img src="images/header.png"></div>
+		</header>
+		<section>
+			<img src="images/hb-1.png">
+			<img src="images/hb-2.png">
+			<img src="images/hb-3.png">
+			<div class="draw">
+				<div class="garbage"></div>
+				<canvas id="init-canvas" height="500" width="500"></canvas>
+			</div>
+		</section>
+		<footer>
+			<a href="javascript:;" class="init" id="generate">生成结果</a>
+		</footer>
+	</div>
+	<div class="result-page">
+		<header>
+			<div class="result">
+				<div class="number">
+					<p>颜值得分</p>
+					<p></p>
+				</div>
+				<p><span>明明可以靠脸吃饭却偏要靠才华</span></p>
+			</div>
+		</header>
+		<section>
+			<img src="images/hb-1.png">
+			<img src="images/hb-2.png">
+			<img src="images/hb-3.png">
+			<div class="draw">
+				<canvas id="result-canvas" height="500" width="500"></canvas>
+			</div>
+		</section>
+		<footer>
+			<a href="javascript:;" class="result" id="share">得瑟一下</a>
+			<a href="javascript:;" class="result" id="repeat">再玩一次</a>
+		</footer>
+	</div>
+	<script src="src/index.js"></script>
+</body>
+</html>
