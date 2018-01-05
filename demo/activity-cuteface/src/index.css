@@ -16,7 +16,6 @@ html,body,section,article,nav,ul,li,a,div,input,header,footer,figure,figcaption,
 }
 html,body{
 	width: 100%;
-	font-size: 1pc;
 	font-family: "Helvetica Neue","Hiragino Sans GB W3","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 	line-height: 1;
 	background-image:url(../images/bg.png);
@@ -48,6 +47,8 @@ img{
 }
 /*自定义*/
 body{
+	margin: 0 auto;
+	max-width: 750px;
 	padding-bottom: 25px;
 	text-align: center;
 }
