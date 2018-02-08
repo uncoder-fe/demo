@@ -96,7 +96,7 @@
 	/**
 	 * 动画
 	 */
-	function _animateType(ctx,data){
+	function _animateType(ctx,data,resolve){
 		// 拷贝一份数据
 		let arry = [];
 		for(let i=0;i<data.length;i++){
