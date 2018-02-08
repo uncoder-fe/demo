@@ -79,7 +79,7 @@
 	/**
 	 * 重画
 	 */
-	function redraw(data){
+	async function redraw(data){
 		let canvas = document.querySelector('#result-canvas');
 		let ctx = canvas.getContext('2d');
 		ctx.clearRect(0,0,500,500);
@@ -88,14 +88,16 @@
 		ctx.lineJoin = 'round';
 		ctx.lineCap = 'round';
 		for(let i=0;i<data.length;i++){
-			_animateType(ctx,data[i]);
+			await new Promise((resolve, reject) => {
+				_animateType(ctx, data[i], resolve);
+			);
 		}
 	}
 	/**
 	 * 动画
 	 */
 	function _animateType(ctx,data){
-		// 浅拷贝一份数据
+		// 拷贝一份数据
 		let arry = [];
 		for(let i=0;i<data.length;i++){
 			arry.push(data[i]);
@@ -106,6 +108,7 @@
 			let newTime = Date.now();
 			if(arry.length == 0){
 				window.cancelAnimationFrame(rafid);
+				resolve('next');
 			}else if(newTime - oldTime > 15 && arry.length > 0){
 				oldTime = newTime;
 				let points = arry.shift().split('-');
