@@ -90,7 +90,7 @@
 		for(let i=0;i<data.length;i++){
 			await new Promise((resolve, reject) => {
 				_animateType(ctx, data[i], resolve);
-			);
+			});
 		}
 	}
 	/**
