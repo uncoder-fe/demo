@@ -120,6 +120,8 @@
 					ctx.stroke();
 					rafid = window.requestAnimationFrame(step);
 				}
+			}else{
+				rafid = window.requestAnimationFrame(step);
 			}
 		}
 	}
