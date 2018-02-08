@@ -106,20 +106,20 @@
 		let rafid = window.requestAnimationFrame(step);
 		function step(){
 			let newTime = Date.now();
-			if(arry.length == 0){
-				window.cancelAnimationFrame(rafid);
-				resolve('next');
-			}else if(newTime - oldTime > 15 && arry.length > 0){
-				oldTime = newTime;
-				let points = arry.shift().split('-');
-				ctx.beginPath();
-				ctx.moveTo(parseFloat(points[2]),parseFloat(points[3]));
-				ctx.lineTo(parseFloat(points[0]),parseFloat(points[1]));
-				ctx.closePath();
-				ctx.stroke();
-				rafid = window.requestAnimationFrame(step);
-			}else{
-				rafid = window.requestAnimationFrame(step);
+			if(newTime - oldTime > 15){
+			    oldTime = newTime;
+				if(arry.length == 0){
+					window.cancelAnimationFrame(rafid);
+					resolve('next');
+				}else{
+					let points = arry.shift().split('-');
+					ctx.beginPath();
+					ctx.moveTo(parseFloat(points[2]),parseFloat(points[3]));
+					ctx.lineTo(parseFloat(points[0]),parseFloat(points[1]));
+					ctx.closePath();
+					ctx.stroke();
+					rafid = window.requestAnimationFrame(step);
+				}
 			}
 		}
 	}
