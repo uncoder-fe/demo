@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>...</title>
+    <style>
+        .test {
+            position: relative;
+        }
+        .touch-div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test">
+        <div class="touch-div">可以尝试冒泡和捕获同</div>
+        <a href="#">同一个位置，浏览器默认会在相同位置执行滞后300ms延迟的click事件，而上层罩层dom已经消失了</a>
+        <script>
+            const touchDiv = document.querySelector(".touch-div");
+            const touchA = document.querySelector("a");
+            let touchTime;
+            document.body.addEventListener("touchstart", function (event) {
+                console.log("body touchstart")
+            })
+            document.body.addEventListener("click", function (event) {
+                console.log("body click")
+            })
+            touchDiv.addEventListener("touchstart", function (event) {
+                setTimeout(() => {
+                    event.target.style.display = "none";
+                }, 300)
+                // debugger
+                touchTime = Date.now();
+                console.log("div touchstart", touchTime)
+            })
+            touchDiv.addEventListener("click", function (event) {
+                console.log("div click")
+            })
+            touchA.addEventListener("click", function (event) {
+                // event.target.style.display = "none";
+                // debugger
+                console.log("a click", Date.now() - touchTime)
+            })
+        </script>
+    </div>
+</body>
+
+</html>
